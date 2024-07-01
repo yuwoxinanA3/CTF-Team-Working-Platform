@@ -1,5 +1,5 @@
 # CTF-Team-Working-Platform
-
+https://repository-images.githubusercontent.com/820962977/ae468a73-bfec-4f39-bd90-7de448bb5cbe
 CTF团队协作平台是一种专门为CTF（Capture The Flag）竞赛团队设计的工作平台，旨在帮助团队成员有效地协作、交流和提升竞赛技能。本平台包括以下功能：
 1. 题目管理：团队成员可以在平台上查看、讨论和解决各种CTF竞赛中的题目，包括密码学、逆向工程、Web安全等各种类型的题目。
 2. 团队协作：成员可以在平台上共享解题思路、工具使用经验，进行讨论和协作，提高团队整体的解题效率。
