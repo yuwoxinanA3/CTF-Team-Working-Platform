@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="Login.css">
+</head>
+
+<body>
+    <div class="login_box">
+        <h2 id="TeamTitle">Rotten科技</h2>
+        <div class="input-box">
+            <label>账号/手机号</label>
+            <input class="user" placeholder="请输入账号/手机号" value="" type="text" />
+        </div>
+        <div class="input-box">
+            <label>密码</label>
+            <input class="password" placeholder="请输入密码" value="" type="password" />
+        </div>
+        <div class="line-box">
+            <a href="#" onclick="">记住密码</a>
+            <a href="#" onclick="forget()">忘记密码?</a>    
+        </div>            
+        <div class="line-box-btn">
+            <div>
+                <button class="login" onclick="login()">登录</button>
+                <button class="signin" onclick="signin()">注册</button>
+            </div>
+            <script>
+                function forget() {
+                    document.title = "忘记密码";
+                }
+                function login() {
+                    var userInput = document.querySelector(".user");
+                    var passwordInput = document.querySelector('.password');
+                    document.title = "login|user|" + userInput.value + "|password|" + passwordInput.value;
+                }
+                function signin(){
+                    document.title = "注册";
+                }
+            </script>
+        </div>
+    </div>
+
+</body>
+
+</html>
