@@ -398,3 +398,44 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+
+
+
+
+# Ignore Visual Studio temporary files, folders, and files:
+.vs/
+bin/
+obj/
+*.dbmdl
+*.jfm
+*.pfx
+*.publishsettings
+ 
+# Often hidden files:
+.DS_Store
+Thumbs.db
+ 
+# User-specific files:
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+ 
+# ReSharper files:
+_ReSharper*/
+*.DotSettings
+ 
+# NCrunch
+*.ncrunch*
+nCrunchTemp*/
+ 
+# MSTest test results:
+[Tt]est[Rr]esult*/
+ 
+# Visual Studio Code files:
+.vscode/
+ 
+# NET Core
+project.lock.json
+project.assets.json
