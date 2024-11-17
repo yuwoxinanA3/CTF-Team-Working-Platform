@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CTF_Team_Working_Platform")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6fcfcd250096654c68698ae2b1cac764299577aa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6753acfc7dd9872cb181a716780174b918118165")]
 [assembly: System.Reflection.AssemblyProductAttribute("CTF_Team_Working_Platform")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CTF_Team_Working_Platform")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
