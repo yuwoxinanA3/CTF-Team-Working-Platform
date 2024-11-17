@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\CTF_Team_Working_Platform.props" />
-</Project>
