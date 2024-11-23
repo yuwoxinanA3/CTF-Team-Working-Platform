@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="SystemControllers\" />
     <Folder Include="BussinessControllers\" />
   </ItemGroup>
 
