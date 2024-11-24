@@ -11,15 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CTFPlatForm.Entity", "CTFPl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CTFPlatForm.Repository", "CTFPlatForm.Repository", "{6E6B9EC2-68F1-4FAF-BDD2-7043A5882443}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CTFPlatForm.EntiyFrameworkCore", "CTFPlatForm.EntiyFrameworkCore", "{39E8D3A6-76DD-4C58-B442-36CCCDBA53BF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CTFPlatForm.ORM", "CTFPlatForm.ORM", "{39E8D3A6-76DD-4C58-B442-36CCCDBA53BF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CTFPlatForm.Core", "CTFPlatForm.Core", "{CBF37065-08B3-4924-8A4C-C4160B85A22B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CTFPlatForm.Plus", "CTFPlatForm.Plus", "{42CDAA1A-E156-402E-B494-57655715CB64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CTFPlatForm.EntiyFrameworkCore", "CTFPlatForm.EntiyFrameworkCore\CTFPlatForm.EntiyFrameworkCore.csproj", "{BFE261A8-025A-42A2-8758-C5AD60EFE959}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CTFPlatForm.EntiyFrameworkCore", "CTFPlatForm.EntiyFrameworkCore\CTFPlatForm.EntiyFrameworkCore.csproj", "{BFE261A8-025A-42A2-8758-C5AD60EFE959}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CTFPlatForm.Entity", "CTFPlatForm.Entity\CTFPlatForm.Entity.csproj", "{3E572600-FC99-4DA9-9F09-06284523ED23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CTFPlatForm.Entity", "CTFPlatForm.Entity\CTFPlatForm.Entity.csproj", "{3E572600-FC99-4DA9-9F09-06284523ED23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
