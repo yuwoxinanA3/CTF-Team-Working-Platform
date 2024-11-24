@@ -2,10 +2,6 @@
 # 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
 ################################################################################
 
-/CTF_Team_Working_Platform/CTF_Team_Working_Platform/bin/Debug/net8.0
-/CTF_Team_Working_Platform/CTF_Team_Working_Platform/obj
-/.vs
-
 
 
 ## Ignore Visual Studio temporary files, build results, and
@@ -449,4 +445,4 @@ nCrunchTemp*/
 # NET Core
 project.lock.json
 project.assets.json
-/CTF_Team_Working_Platform/.vs/CTF_Team_Working_Platform/v17/.suo
+
