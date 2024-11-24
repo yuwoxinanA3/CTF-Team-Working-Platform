@@ -27,7 +27,7 @@ namespace CTF_Team_Working_Platform
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = builder.Configuration["Jwt:Issuer"],
                     ValidAudience = builder.Configuration["Jwt:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+                    IssuerSigningKey =new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
                 };
             });
 
@@ -49,7 +49,7 @@ namespace CTF_Team_Working_Platform
             app.UseHttpsRedirection();
             // 启用认证和授权中间件
             app.UseAuthentication();
-
+            //启用授权
             app.UseAuthorization();
 
 
