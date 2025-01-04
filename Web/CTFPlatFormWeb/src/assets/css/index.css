@@ -1,15 +1,23 @@
+/* 功能巨石阵样式 */
 body {
+    margin: 0;
+    padding: 0;
+    background-color: #212121;
+    display: flex;
+    justify-content: center;
+}
+
+#abiltily_wrapper_box {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     overflow: hidden;
-    background-color: #212121;
 }
 
 .abiltily_wrapper {
     width: 100%;
-    height: 100%;
+    height: 130%;
     position: relative;
     text-align: center;
     display: flex;
@@ -19,10 +27,11 @@ body {
 }
 
 .abiltily_inner {
-    --w: 100px;
-    --h: 150px;
+    --w: 200px;
+    --h: 300px;
     --translateZ: calc((var(--w) + var(--h)) + 0px);
     --rotateX: -15deg;
+    /*仰角*/
     --perspective: 1000px;
     position: absolute;
     width: var(--w);
