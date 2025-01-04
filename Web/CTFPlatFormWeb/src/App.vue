@@ -8,7 +8,7 @@
         </el-button>
     </Transition>
     <!-- 用户信息 -->
-    <el-row style="background-color: #F5F7FA;">
+    <el-row id="user_info">
         <!-- 关闭用户信息按钮 -->
         <Transition name="collapse-button-transition">
             <el-button @click="show = !show" v-if="!show" class="layer-panel-collapse-button"
@@ -120,15 +120,19 @@ export default {
 /* 用户信息展开按钮样式 */
 .layer-panel-button {
     color: aqua;
-    background-color: #F5F7FA;
+    background-color: #eaf3ff;
     height: 120px;
     border-radius: 0;
 }
 
 .layer-panel-collapse-button {
     color: aqua;
-    background-color: #F5F7FA;
+    background-color: #eaf3ff;
     height: 120px;
     border-radius: 0;
+}
+
+#user_info {
+    background-color: #eaf3ff;
 }
 </style>
