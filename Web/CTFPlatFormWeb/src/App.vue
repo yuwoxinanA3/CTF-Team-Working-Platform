@@ -2,7 +2,7 @@
     <!-- 展开用户信息按钮 -->
     <Transition name="button-transition" style="position: absolute; right: 0;">
         <el-button @click="show = !show" v-show="show" class="layer-panel-button">
-            <el-icon>
+            <el-icon :size="30">
                 <CaretLeft />
             </el-icon>
         </el-button>
@@ -12,7 +12,7 @@
         <!-- 关闭用户信息按钮 -->
         <Transition name="collapse-button-transition">
             <el-button @click="show = !show" v-if="!show" class="layer-panel-collapse-button"
-                style="width: 10%;"><el-icon>
+                style="width: 10%;"><el-icon :size="30">
                     <CaretRight />
                 </el-icon></el-button>
         </Transition>
@@ -120,19 +120,23 @@ export default {
 /* 用户信息展开按钮样式 */
 .layer-panel-button {
     color: aqua;
-    background-color: #eaf3ff;
+    background-color: #212121;
     height: 120px;
+    width: 2%;
     border-radius: 0;
+    border: none;
 }
 
 .layer-panel-collapse-button {
     color: aqua;
-    background-color: #eaf3ff;
+    background-color: #212121;
     height: 120px;
     border-radius: 0;
+    border: none;
 }
 
 #user_info {
-    background-color: #eaf3ff;
+    background-color: #212121;
+    color: aliceblue;
 }
 </style>
