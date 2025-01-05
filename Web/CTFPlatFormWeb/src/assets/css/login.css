@@ -1,23 +1,21 @@
-#login_box{
+#login_box {
     text-align: center;
 }
 
-#login_box_title{
+#login_box_title {}
 
-}
-
-#login_box_title_logo_box{
+#login_box_title_logo_box {
     display: flex;
     justify-content: center;
 }
 
-#login_box_title_logo_box_padding{
+#login_box_title_logo_box_padding {
     width: 80%;
     display: flex;
     justify-content: center;
 }
 
-#login_box_title_text{
+#login_box_title_text {
     margin-top: 20px;
     font-size: xx-large;
     font-weight: 400;
@@ -25,20 +23,41 @@
 }
 
 
-#login_box_content{
+#login_box_content {
     /* background-color: red; */
     margin-top: 50px;
 }
 
-#login_box_content_box{
+#login_box_content_box {
     /* background-color: rgb(13, 255, 0); */
     display: flex;
     justify-content: center;
 }
 
-.demo-tabs > .el-tabs__content {
+.demo-tabs>.el-tabs__content {
     padding: 32px;
     color: #6b778c;
     font-size: 32px;
     font-weight: 600;
-  }
+}
+
+
+.el_form_item_login{
+    margin-top: 30px;
+}
+
+
+#login_button_box {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+#login_button {
+    width: 30%;
+}
+
+#reset_button {
+    width: 30%;
+}

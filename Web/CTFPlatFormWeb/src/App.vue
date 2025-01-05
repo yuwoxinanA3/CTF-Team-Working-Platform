@@ -40,7 +40,7 @@
     </el-row>
 
     <!-- 侧边展开的登录栏 -->
-    <el-drawer v-model="drawer" :before-close="handleClose">
+    <el-drawer v-model="drawer" :before-close="drawerhandleClose">
 
         <div id="login_box">
             <!-- 登录面板logo区 -->
@@ -68,8 +68,42 @@
                         <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick" :stretch="true">
                             <!-- 账号密码登录 -->
                             <el-tab-pane label="账号密码登录" name="first">
+                                <el-form ref="formRef" :model="form" label-width="auto">
+
+                                    <el-form-item label="用户名" prop="username" label-position="right"
+                                        class="el_form_item_login">
+                                        <el-input v-model="form.username"></el-input>
+                                    </el-form-item>
+
+                                    <el-form-item label="密码" prop="password" label-position="right"
+                                        class="el_form_item_login">
+                                        <el-input type="password" v-model="form.password"></el-input>
+                                    </el-form-item>
+
+                                    <el-form-item class="el_form_item_login">
+                                        <div style="display: flex;justify-content: space-between;width: 100%;">
+                                            <div>
+                                                自动登录
+                                            </div>
+                                            <div>
+                                                忘记密码
+                                            </div>
+                                        </div>
+
+                                    </el-form-item>
+
+                                    <el-form-item class="el_form_item_login">
+                                        <div id="login_button_box">
+                                            <el-button id="login_button" type="primary"
+                                                @click="submitForm">登录</el-button>
+                                            <el-button id="reset_button" type="info" plain>重置</el-button>
+                                        </div>
+                                    </el-form-item>
+
+                                </el-form>
 
                             </el-tab-pane>
+
                             <!-- 手机号登录 -->
                             <el-tab-pane label="手机号登录" name="second">Config</el-tab-pane>
                         </el-tabs>
@@ -95,10 +129,26 @@ export default {
         const defaultImageUrl = ref('https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png')
         const circleUrl = ref('https://img1.baidu.com/it/u=1641206708,3419329057&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500')
         const activeName = ref('first')
-        const handleClose = (done) => {
+
+        const form = ref({
+            username: '',
+            password: ''
+        });
+        const formRef = ref(null);
+        const drawerhandleClose = (done) => {
             done()
         }
 
+        const submitForm = () => {
+            formRef.value.validate((valid) => {
+                if (valid) {
+                    console.log('提交的表单数据:', form.value);
+                } else {
+                    console.log('表单验证失败');
+                    return false;
+                }
+            });
+        };
         // 检查本地头像是否存在，如果不存在则使用默认图标
         onMounted(() => {
             const img = new Image()
@@ -120,7 +170,11 @@ export default {
             logo,
             activeName,
             circleUrl,
-            handleClose
+            drawerhandleClose,
+            form,
+            formRef,
+            submitForm
+
         }
     }
 }
