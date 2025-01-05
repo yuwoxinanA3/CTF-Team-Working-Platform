@@ -40,15 +40,53 @@
     </el-row>
 
     <!-- 侧边展开的登录栏 -->
-    <el-drawer v-model="drawer" title="I am the title" :before-close="handleClose">
-        <span>Hi, there!</span>
+    <el-drawer v-model="drawer" :before-close="handleClose">
+
+        <div id="login_box">
+            <!-- 登录面板logo区 -->
+            <div id="login_box_title">
+                <div id="login_box_title_logo_box">
+
+                    <div id="login_box_title_logo_box_padding">
+                        <div style="">
+                            <el-image style="width: 100px; height: 100px;" :src="logo" />
+                        </div>
+
+                        <div style="padding-left: 30px;">
+                            <div style="line-height:100px;font-size: 90px;font-weight: 600;">Rotten</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="login_box_title_text">
+                    CTF团队协作平台
+                </div>
+            </div>
+            <!-- 登录面板区 -->
+            <div id="login_box_content">
+                <div id="login_box_content_box">
+                    <div style="width: 75%;">
+                        <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick" :stretch="true">
+                            <!-- 账号密码登录 -->
+                            <el-tab-pane label="账号密码登录" name="first">
+
+                            </el-tab-pane>
+                            <!-- 手机号登录 -->
+                            <el-tab-pane label="手机号登录" name="second">Config</el-tab-pane>
+                        </el-tabs>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
     </el-drawer>
 
 </template>
 
 <script lang="js">
 import { ref, onMounted } from 'vue'
-
+import logo from '@/assets/images/logo.png'
 export default {
     setup() {
         const drawer = ref(false)
@@ -56,6 +94,7 @@ export default {
         //没头像，加载默认图标
         const defaultImageUrl = ref('https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png')
         const circleUrl = ref('https://img1.baidu.com/it/u=1641206708,3419329057&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500')
+        const activeName = ref('first')
         const handleClose = (done) => {
             done()
         }
@@ -68,9 +107,18 @@ export default {
                 circleUrl.value = defaultImageUrl
             }
         })
+
+
+        const handleClick = (tab, event) => {
+            console.log(tab, event)
+        }
+
+
         return {
             drawer,
             show,
+            logo,
+            activeName,
             circleUrl,
             handleClose
         }
@@ -79,64 +127,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/*
-用户信息展开
-*/
-.slide-fade-enter-active {
-    transition: all 0.1S ease-out;
-}
-
-.slide-fade-leave-active {
-    transition: all 0.1S cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-    transform: translateX(100px);
-    opacity: 0;
-}
-
-/*用户信息展开操作按钮动画*/
-.button-transition-enter-active,
-.button-transition-leave-active {
-    transition: all 0.5s ease;
-}
-
-.button-transition-leave-to,
-.button-transition-enter-from {
-    transform: translateX(-100px);
-
-}
-
-.collapse-button-transition-enter-active {
-    transition: all 0.5s ease-in-out;
-}
-
-.collapse-button-transition-leave-to,
-.collapse-button-transition-enter-from {
-    opacity: 0;
-}
-
-/* 用户信息展开按钮样式 */
-.layer-panel-button {
-    color: aqua;
-    background-color: #212121;
-    height: 120px;
-    width: 2%;
-    border-radius: 0;
-    border: none;
-}
-
-.layer-panel-collapse-button {
-    color: aqua;
-    background-color: #212121;
-    height: 120px;
-    border-radius: 0;
-    border: none;
-}
-
-#user_info {
-    background-color: #212121;
-    color: aliceblue;
-}
+@import '../src/assets/css/index.css';
+@import '../src/assets/css/login.css';
 </style>
