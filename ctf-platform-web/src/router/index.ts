@@ -6,7 +6,7 @@ const router = createRouter({
         {
             path: '/',
             name: 'index',
-            component: () => import('@/views/admin/user.vue')
+            component: () => import('@/views/index/login.vue')
         },
         {
             path: '/login',
@@ -16,7 +16,7 @@ const router = createRouter({
         {
             path: '/:pathMatch(.*)',
             name: 'notfund',
-            component: () => import('@/views/index/404.vue')
+            component: () => import('@/views/index/notFund.vue')
         }
     ]
 })
