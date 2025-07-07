@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CTFPlatForm.Api", "CTFPlatForm\CTFPlatForm.Api.csproj", "{1C4F2818-B80B-48C5-97F5-EB12451395CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CTFPlatForm.Core", "CTFPlatForm.Core\CTFPlatForm.Core.csproj", "{9C10CCC4-EEB0-4BB7-AE16-532FBB582687}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CTFPlatForm.Service", "CTFPlatForm.Service\CTFPlatForm.Service.csproj", "{FDA6B1A7-3C16-4AFD-BFBF-3B3F7FC11D79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CTFPlatForm.Repository", "CTFPlatForm.Repository\CTFPlatForm.Repository.csproj", "{8592E728-0465-4B2F-8F28-52EBFC739B90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CTFPlatForm.Infrastructure", "CTFPlatForm.Infrastructure\CTFPlatForm.Infrastructure.csproj", "{DFA4E660-15B1-4145-8109-BAB8B2887F24}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C4F2818-B80B-48C5-97F5-EB12451395CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C4F2818-B80B-48C5-97F5-EB12451395CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C4F2818-B80B-48C5-97F5-EB12451395CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C4F2818-B80B-48C5-97F5-EB12451395CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C10CCC4-EEB0-4BB7-AE16-532FBB582687}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C10CCC4-EEB0-4BB7-AE16-532FBB582687}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C10CCC4-EEB0-4BB7-AE16-532FBB582687}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C10CCC4-EEB0-4BB7-AE16-532FBB582687}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDA6B1A7-3C16-4AFD-BFBF-3B3F7FC11D79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDA6B1A7-3C16-4AFD-BFBF-3B3F7FC11D79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDA6B1A7-3C16-4AFD-BFBF-3B3F7FC11D79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDA6B1A7-3C16-4AFD-BFBF-3B3F7FC11D79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8592E728-0465-4B2F-8F28-52EBFC739B90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8592E728-0465-4B2F-8F28-52EBFC739B90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8592E728-0465-4B2F-8F28-52EBFC739B90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8592E728-0465-4B2F-8F28-52EBFC739B90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFA4E660-15B1-4145-8109-BAB8B2887F24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFA4E660-15B1-4145-8109-BAB8B2887F24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFA4E660-15B1-4145-8109-BAB8B2887F24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFA4E660-15B1-4145-8109-BAB8B2887F24}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1D58302F-2D93-4BE4-AA00-986CCD5CA491}
+	EndGlobalSection
+EndGlobal

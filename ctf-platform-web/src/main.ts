@@ -9,6 +9,8 @@ import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 //引入路由
 import router from './router'
+//引入pinia
+import { createPinia } from 'pinia'
 
 const app = createApp(App)
 //使用饿了么UI
@@ -18,4 +20,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 //挂载路由
 app.use(router)
+// 挂载 Pinia 
+const pinia = createPinia()
+app.use(pinia)
 app.mount('#app')

@@ -17,6 +17,14 @@ export default defineConfig({
     //设置主机
     host: '127.0.0.1',
     //端口
-    port: 5001
+    port: 5001,
+    //代理
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5193',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
   },
 })
