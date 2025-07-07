@@ -187,8 +187,8 @@ const resetForm = () => {
     form.value.password = '';
     form.value.isSavePassword = false;
     //清除缓存
-    localStorage.removeItem('savedUsername');
-    localStorage.removeItem('savedPassword');
+    deleteCookie('savedUsername');
+    deleteCookie('savedPassword');
 };
 
 /**
