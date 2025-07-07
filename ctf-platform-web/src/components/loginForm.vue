@@ -60,6 +60,8 @@
                                     <span style="vertical-align:middle">第三方登录:</span>
                                     <img :src="qqIcon" width="22" height="22"
                                         style="vertical-align:middle;margin-left: 8px" @click="qqLogin" title="QQ">
+                                    <img :src="WeChatIcon" width="22" height="22"
+                                        style="vertical-align:middle;margin-left: 8px" @click="WeChatLogin" title="WeChat">
                                     <img :src="zhifubaoIcon" width="22" height="22"
                                         style="vertical-align:middle;margin-left: 8px" @click="payLogin" title="支付宝">
                                     <img :src="giteeIcon" width="22" height="22"
@@ -134,11 +136,13 @@ import router from '@/router';
 //自定义引入
 import { type login_req } from '@/api-services/models/login_req';
 //资源引入
-import logo from '@/assets/images/logo.png'
-import qqIcon from '@/assets/images/qq.png'
-import zhifubaoIcon from '@/assets/images/支付宝.png'
-import giteeIcon from '@/assets/images/gitee.png'
-import githubIcon from '@/assets/images/github.png'
+import logo from '@/assets/icons/logo.png'
+import qqIcon from '@/assets/icons/qq.png'
+import WeChatIcon from '@/assets/icons/WeChat.png'
+
+import zhifubaoIcon from '@/assets/icons/alipay.png'
+import giteeIcon from '@/assets/icons/gitee.png'
+import githubIcon from '@/assets/icons/github.png'
 import { useAuthStore } from '@/store/authStore';
 import { deleteCookie, getCookie, setCookie } from '@/utils/cookieUtils';
 import { decrypt, encrypt } from '@/utils/cryptoUtils';
@@ -283,6 +287,12 @@ async function submitPhoneForm() {
  */
 function qqLogin() {
     ElMessage('QQ登录功能待开发')
+}
+/**
+ * 微信登录
+ */
+function WeChatLogin() {
+    ElMessage('微信登录功能待开发')
 }
 
 /**
