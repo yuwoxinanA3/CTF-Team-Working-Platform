@@ -15,38 +15,40 @@
                 </div>
             </div>
             <div id="login_box_title_text">
-                CTF团队协作平台
+                {{ $t('platform_name') }}
             </div>
         </div>
         <!-- 登录面板区 -->
         <div id="login_box_content">
             <div id="login_box_content_box">
                 <div style="width: 75%;">
-                    <el-tabs v-model="activeName" class="demo-tabs" :stretch="true">
+                    <el-tabs v-model="activeName" class="demo-tabs" :stretch="true" style="height: 300px;">
                         <!-- 账号密码登录 -->
-                        <el-tab-pane label="账号密码登录" name="first">
+                        <el-tab-pane :label="$t('login.account_login')" name="first">
                             <el-form ref="formRef" :model="form" label-width="auto">
 
-                                <el-form-item label="用户名" prop="username" label-position="right"
+                                <el-form-item :label="$t('login.account')" prop="username" label-position="right"
                                     class="el_form_item_login">
-                                    <el-input v-model="form.username"></el-input>
+                                    <el-input v-model="form.username" :placeholder="$t('login.inputAccount')" ></el-input>
                                 </el-form-item>
 
-                                <el-form-item label="密码" prop="password" label-position="right"
+                                <el-form-item :label="$t('login.password')" prop="password" label-position="right"
                                     class="el_form_item_login">
-                                    <el-input type="password" v-model="form.password"></el-input>
+                                    <el-input type="password" v-model="form.password" :placeholder="$t('login.inputPassword')" ></el-input>
                                 </el-form-item>
 
                                 <el-form-item class="el_form_item_login">
                                     <div style="display: flex;justify-content: space-between;width: 100%;">
                                         <div>
                                             <el-checkbox v-model:checked="form.isSavePassword"
-                                                @change="changeSaveModel">保存密码</el-checkbox>
+                                                @change="changeSaveModel">{{ $t('login.saveModel') }}</el-checkbox>
                                         </div>
                                         <div>
-                                            <span id="register" @click="handleRegisterClick">注册</span>
+                                            <span id="register" @click="handleRegisterClick">{{ $t('login.register')
+                                            }}</span>
 
-                                            <span id="forgetPassword" @click="forgetPassword">忘记密码</span>
+                                            <span id="forgetPassword" @click="forgetPassword">{{
+                                                $t('login.forgetPassword') }}</span>
 
                                         </div>
                                     </div>
@@ -57,11 +59,12 @@
                             <!-- 登录按钮功能区 -->
                             <el-form-item class="el_form_item_login">
                                 <div style="line-height: 22px;margin:0 0 8px 0;color: #9b9b9b;">
-                                    <span style="vertical-align:middle">第三方登录:</span>
+                                    <span style="vertical-align:middle">{{ $t('login.thridWayLogin') }}</span>
                                     <img :src="qqIcon" width="22" height="22"
                                         style="vertical-align:middle;margin-left: 8px" @click="qqLogin" title="QQ">
                                     <img :src="WeChatIcon" width="22" height="22"
-                                        style="vertical-align:middle;margin-left: 8px" @click="WeChatLogin" title="WeChat">
+                                        style="vertical-align:middle;margin-left: 8px" @click="WeChatLogin"
+                                        title="WeChat">
                                     <img :src="zhifubaoIcon" width="22" height="22"
                                         style="vertical-align:middle;margin-left: 8px" @click="payLogin" title="支付宝">
                                     <img :src="giteeIcon" width="22" height="22"
@@ -73,30 +76,35 @@
                                 </div>
 
                                 <div id="login_button_box">
-                                    <el-button id="login_button" type="primary" @click="submitForm">登录</el-button>
-                                    <el-button id="reset_button" type="info" @click="resetForm" plain>重置</el-button>
+                                    <el-button id="login_button" type="primary" @click="submitForm">{{
+                                        $t('login.submit')
+                                    }}</el-button>
+                                    <el-button id="reset_button" type="info" @click="resetForm" plain>{{
+                                        $t('login.reset') }}</el-button>
                                 </div>
                             </el-form-item>
 
                         </el-tab-pane>
 
                         <!-- 手机号登录 -->
-                        <el-tab-pane label="手机号登录" name="second">
+                        <el-tab-pane :label="$t('login.phoneNumberLogin')" name="second">
 
 
                             <el-form ref="phoneFormRef" :model="phoneForm" label-width="auto">
 
                                 <!-- 手机号码 -->
-                                <el-form-item label="手机号" prop="phoneNumber" label-position="right"
+                                <el-form-item :label="$t('login.phoneNumber')" prop="phoneNumber" label-position="right"
                                     class="el_form_item_login">
-                                    <el-input v-model="phoneForm.phoneNumber" placeholder="请输入手机号"></el-input>
+                                    <el-input v-model="phoneForm.phoneNumber"
+                                        :placeholder="$t('login.inputPhoneNumber')"></el-input>
                                 </el-form-item>
 
                                 <!-- 验证码 -->
-                                <el-form-item label="验证码" prop="verificationCode" label-position="right"
+                                <el-form-item :label="$t('login.code')" prop="verificationCode" label-position="right"
                                     class="el_form_item_login">
                                     <div style="display: flex; align-items: center;">
-                                        <el-input v-model="phoneForm.verificationCode" placeholder="请输入验证码"></el-input>
+                                        <el-input v-model="phoneForm.verificationCode"
+                                            :placeholder="$t('login.inputCode')"></el-input>
                                         <el-button type="primary" @click="getVerificationCode"
                                             style="margin-left: 10px;">
                                             {{ codeButtonText }}
@@ -107,9 +115,10 @@
                                 <!-- 操作按钮 -->
                                 <el-form-item class="el_form_item_login">
                                     <div id="login_button_box">
-                                        <el-button id="login_button" type="primary"
-                                            @click="submitPhoneForm">登录</el-button>
-                                        <el-button id="reset_button" type="info" plain>重置</el-button>
+                                        <el-button id="login_button" type="primary" @click="submitPhoneForm">{{
+                                            $t('login.submit') }}</el-button>
+                                        <el-button id="reset_button" type="info" plain>{{ $t('login.reset')
+                                            }}</el-button>
                                     </div>
                                 </el-form-item>
 
@@ -118,11 +127,14 @@
                         </el-tab-pane>
 
                     </el-tabs>
+                    
                 </div>
+
             </div>
 
         </div>
     </div>
+    <languageChange style="margin-top: 300px;"></languageChange>
 
 </template>
 
@@ -133,13 +145,14 @@ import { ref } from 'vue'
 import axios from 'axios';
 import { ElMessage, type ElForm } from 'element-plus';
 import router from '@/router';
+import { useI18n } from 'vue-i18n'
 //自定义引入
 import { type login_req } from '@/api-services/models/login_req';
+import languageChange from '@/components/languageChange.vue';
 //资源引入
 import logo from '@/assets/icons/logo.png'
 import qqIcon from '@/assets/icons/qq.png'
 import WeChatIcon from '@/assets/icons/WeChat.png'
-
 import zhifubaoIcon from '@/assets/icons/alipay.png'
 import giteeIcon from '@/assets/icons/gitee.png'
 import githubIcon from '@/assets/icons/github.png'
@@ -150,6 +163,8 @@ import { decrypt, encrypt } from '@/utils/cryptoUtils';
 
 //数据
 const activeName = ref('first')
+//获取翻译文本
+const { t } = useI18n()
 
 //尝试从cookie中读取保存的账号密码
 const savedEncryptedUser = getCookie('savedUsername');
@@ -172,7 +187,7 @@ const phoneForm = ref({
     phoneNumber: '',
     verificationCode: ''
 });
-const codeButtonText = ref('获取验证码');
+const codeButtonText = ref(t('login.getCode'));
 
 //方法
 
@@ -255,9 +270,9 @@ const handleRegisterClick = () => {
 
 function getVerificationCode() {
     // 模拟发送验证码
-    codeButtonText.value = '已发送';
+    codeButtonText.value = t("login.hasSendCode");
     setTimeout(() => {
-        codeButtonText.value = '获取验证码';
+        codeButtonText.value = t("login.getCode");
     }, 5000);
 }
 

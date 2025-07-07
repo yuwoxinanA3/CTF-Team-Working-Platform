@@ -11,6 +11,8 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import router from './router'
 //引入pinia
 import { createPinia } from 'pinia'
+// 引入 i18n 配置
+import i18n from '@/utils/i18n';
 
 const app = createApp(App)
 //使用饿了么UI
@@ -23,4 +25,6 @@ app.use(router)
 // 挂载 Pinia 
 const pinia = createPinia()
 app.use(pinia)
+//国际化
+app.use(i18n)
 app.mount('#app')
