@@ -22,7 +22,7 @@
         <div id="login_box_content">
             <div id="login_box_content_box">
                 <div style="width: 75%;">
-                    <el-tabs v-model="activeName" class="demo-tabs" :stretch="true" style="height: 300px;">
+                    <el-tabs v-model="activeName" class="demo-tabs" :stretch="true" style="height: 340px;">
                         <!-- 账号密码登录 -->
                         <el-tab-pane :label="$t('login.account_login')" name="first">
                             <el-form ref="formRef" :model="form" label-width="auto">
