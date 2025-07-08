@@ -1,4 +1,8 @@
-﻿using CTFPlatForm.Core.Dto;
+﻿using CTFPlatForm.Api.Config;
+using CTFPlatForm.Core.Dto.Login;
+using CTFPlatForm.Core.Dto.User;
+using CTFPlatForm.Core.Interface.Login;
+using CTFPlatForm.Core.Other;
 using CTFPlatForm.Infrastructure.Tools;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,14 +11,16 @@ namespace CTFPlatForm.Api.Controllers
 {
     public class LoginController : BaseController
     {
+        private ILoginService _loginService;
+
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="configuration"></param>
         /// <param name="logger"></param>
-        public LoginController(IConfiguration configuration, ILogger<LoginController> logger) : base(configuration, logger)
+        public LoginController(IConfiguration configuration, ILogger<LoginController> logger, ILoginService loginService) : base(configuration, logger)
         {
-
+            _loginService = loginService;
         }
 
         /// <summary>
@@ -23,14 +29,20 @@ namespace CTFPlatForm.Api.Controllers
         /// <param name="loginReq"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Login([FromBody] LoginReq loginReq)
+        public async Task<IActionResult> LoginAsync([FromBody] LoginReq loginReq)
         {
-            // 验证用户凭据
-            if (loginReq.UserAccount == "li" && loginReq.PassWord == "123456")
+            //模型验证
+            if (ModelState.IsValid)
             {
+                UserRes user = await _loginService.GetUser(loginReq);
+                if (user == null)
+                {
+                    return Unauthorized();
+                }
                 JWTHelper jWTHelper = new JWTHelper();
-
                 var token = jWTHelper.GenerateJwtToken(loginReq.UserAccount, _configuration["JWTSettings:ValidIssuer"], _configuration["JWTSettings:ValidAudience"], _configuration["JWTSettings:IssuerSigningKey"]);
+
+                _logger.LogInformation("登录");
                 return Ok(new { token });
             }
 

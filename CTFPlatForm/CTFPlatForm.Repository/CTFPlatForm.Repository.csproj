@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CTFPlatForm.Core\CTFPlatForm.Core.csproj" />
+    <ProjectReference Include="..\CTFPlatForm.Infrastructure\CTFPlatForm.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

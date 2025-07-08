@@ -7,10 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Common\" />
-    <Folder Include="Entitys\" />
     <Folder Include="Enum\" />
-    <Folder Include="Other\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CTFPlatForm.Infrastructure\CTFPlatForm.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

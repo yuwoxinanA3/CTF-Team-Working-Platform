@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CTFPlatForm.Core.Dto
+namespace CTFPlatForm.Core.Dto.Login
 {
     /// <summary>
     /// 登录请求

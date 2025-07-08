@@ -1,7 +1,14 @@
 
+using CTFPlatForm.Core.Interface;
+using CTFPlatForm.Core.Interface.Login;
 using CTFPlatForm.Infrastructure.Tools;
+using CTFPlatForm.Repository;
+using CTFPlatForm.Repository.Login;
+using CTFPlatForm.Service.Login;
+using CTFPlatForm.Service.Upgrade;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using SqlSugar;
 using System.Text;
 
 namespace CTFPlatForm
@@ -43,10 +50,34 @@ namespace CTFPlatForm
             });
             #endregion
 
+            #region 添加 SqlSugar
+            builder.Services.AddScoped<ISqlSugarClient>(provider =>
+            {
+                var connectionString = builder.Configuration.GetConnectionString("ConnectionString");
+                return new SqlSugarClient(new ConnectionConfig()
+                {
+                    ConnectionString = connectionString,
+                    DbType = DbType.MySql, // 根据你的数据库类型修改，如 MySql、Sqlite 等
+                    IsAutoCloseConnection = true,
+                    InitKeyType = InitKeyType.Attribute // 使用实体类属性映射字段
+                });
+            });
+            #endregion
+
             // 了解有关配置Swagger/OpenAPI的更多信息
             // 微软官网链接 https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            // 注册服务
+            builder.Services.AddScoped<LoginRepository>();
+            builder.Services.AddScoped<ILoginService, LoginService>();
+
+            builder.Services.AddScoped<UpgradeRepository>();
+            builder.Services.AddScoped<IUpgradeService, UpgradeService>();
+
+
+
 
             //实例化APP
             var app = builder.Build();
