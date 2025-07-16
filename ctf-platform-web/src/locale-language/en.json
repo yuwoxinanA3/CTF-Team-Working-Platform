@@ -4,6 +4,8 @@
         "account_login": "Account Login",
         "inputAccount": "enter the account",
         "inputPassword": "enter the password",
+        "inputPasswordAgain": "enter the password again",
+        "surePassword": "Confirm Password",
         "account": "Account",
         "password": "Password",
         "saveModel": "SavePassword",
@@ -18,6 +20,7 @@
         "hasSendCode": "Has sent",
         "inputPhoneNumber": "enter the phone number",
         "submit": "Sign in",
-        "reset": "Reset"
+        "reset": "Reset",
+        "backLogin":"Back Login"
     }
 }

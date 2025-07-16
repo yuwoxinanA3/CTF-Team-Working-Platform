@@ -40,19 +40,60 @@
 
 
         <!-- 登录组件框 -->
-        <div style="width: 25%;background-color: white;">
-            <loginForm />
+        <div style="width: 25%; background-color: white;">
+
+            <div id="login_box">
+                <!-- 登录面板logo区 -->
+                <div id="login_box_title">
+                    <div id="login_box_title_logo_box">
+
+                        <div id="login_box_title_logo_box_padding">
+                            <div style="">
+                                <el-image style="width: 100px; height: 100px;" :src="logo" />
+                            </div>
+
+                            <div style="padding-left: 30px;">
+                                <div style="line-height:100px;font-size: 90px;font-weight: 600;">Rotten</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="login_box_title_text">
+                        {{ $t('platform_name') }}
+                    </div>
+                </div>
+                <div v-if="showLoginForm">
+                    <loginForm @switch-to-register="showLoginForm = false" />
+                </div>
+                <div v-else>
+                    <registerForm @switch-to-login="showLoginForm = true" />
+                </div>
+
+            </div>
+
+
+            <languageChange style="margin-top: 300px;"></languageChange>
         </div>
 
-    </div>
 
+    </div>
 
 </template>
 
 
 <script setup lang="ts">
-import loginForm from '@/components/loginForm.vue'
+//官方引入
+import { ref } from 'vue';
+//插件引入
 
+//自定义引入
+import loginForm from '@/components/loginForm.vue'
+import languageChange from '@/components/languageChange.vue';
+import registerForm from '@/components/registerForm.vue';
+//资源引入
+import logo from '@/assets/icons/logo.png'
+
+// 控制显示登录或注册表单
+const showLoginForm = ref(true)
 </script>
 
 
@@ -131,5 +172,31 @@ body {
 
 img {
     width: 100%;
+}
+
+
+
+/* logo区 */
+
+#login_box {
+    text-align: center;
+}
+
+#login_box_title_logo_box {
+    display: flex;
+    justify-content: center;
+}
+
+#login_box_title_logo_box_padding {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+#login_box_title_text {
+    margin-top: 20px;
+    font-size: xx-large;
+    font-weight: 400;
+    color: rgb(120, 120, 117);
 }
 </style>

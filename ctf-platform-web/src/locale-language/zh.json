@@ -4,6 +4,8 @@
         "account_login": "账号密码登录",
         "inputAccount": "请输入账号",
         "inputPassword": "请输入密码",
+        "inputPasswordAgain": "请再次输入密码",
+        "surePassword":"确认密码",
         "account": "账号",
         "password": "密码",
         "saveModel": "保存密码",
@@ -18,6 +20,7 @@
         "hasSendCode": "已发送",
         "inputPhoneNumber": "请输入手机号",
         "submit": "登录",
-        "reset": "重置"
+        "reset": "重置",
+        "backLogin":"返回登录"
     }
 }
