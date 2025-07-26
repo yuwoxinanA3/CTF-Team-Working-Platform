@@ -27,7 +27,7 @@ namespace CTFPlatForm.Repository
             _db.CodeFirst.SetStringDefaultLength(200).InitTables(ass);
 
             //初始化超级管理员
-            Users user = new Users()
+            Core.Entitys.Users user = new Core.Entitys.Users()
             {
                 Id = Guid.NewGuid().ToString(),
                 UserAccount = "admin",
@@ -37,7 +37,7 @@ namespace CTFPlatForm.Repository
                 IsEnable = true,
                 Description = "数据库初始化时默认的超级管理员",
                 CreateDate = DateTime.Now,
-                CreateUserId = ""
+                CreateUserId = "system"
             };
             //string userId = (await _db.Insertable(user).ExecuteReturnEntityAsync()).Id;
             return await _db.Insertable(user).ExecuteCommandIdentityIntoEntityAsync();

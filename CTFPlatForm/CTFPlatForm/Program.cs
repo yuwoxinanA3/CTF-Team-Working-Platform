@@ -1,10 +1,14 @@
 
 using CTFPlatForm.Core.Interface;
 using CTFPlatForm.Core.Interface.Login;
+using CTFPlatForm.Core.Interface.User;
 using CTFPlatForm.Infrastructure.Tools;
 using CTFPlatForm.Repository;
 using CTFPlatForm.Repository.Login;
+using CTFPlatForm.Repository.User;
+using CTFPlatForm.Service;
 using CTFPlatForm.Service.Login;
+using CTFPlatForm.Service.Register;
 using CTFPlatForm.Service.Upgrade;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -75,6 +79,10 @@ namespace CTFPlatForm
 
             builder.Services.AddScoped<UpgradeRepository>();
             builder.Services.AddScoped<IUpgradeService, UpgradeService>();
+
+            builder.Services.AddScoped<UserRepository>();
+            builder.Services.AddScoped<IUserService, UserService>();
+
 
 
 

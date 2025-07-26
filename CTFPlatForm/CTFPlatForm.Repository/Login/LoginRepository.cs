@@ -29,15 +29,32 @@ namespace CTFPlatForm.Repository.Login
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        public async Task<UserRes> GetUser(LoginReq req)
+        public async Task<UserRes?> GetUser(LoginReq req)
         {
+            // 登录验证的正确方式
             var user = await _db.Queryable<Users>()
-                .Where(p => p.UserAccount == req.UserAccount && p.Password == req.PassWord)
-                .Select(p => new UserRes() { }, true).FirstAsync();
-            return user;
+                .Where(p => p.UserAccount == req.UserAccount)
+                .FirstAsync();
+
+            // 先检查用户是否存在
+            if (user == null)
+            {
+                return null;
+            }
+
+            // 使用BCrypt验证密码
+            if (BCrypt.Net.BCrypt.Verify(req.PassWord, user.Password))
+            {
+                // 密码正确，返回用户信息
+                var userRes = new UserRes() { /* 映射用户信息 */ };
+                return userRes;
+            }
+            else
+            {
+                // 密码错误
+                return null;
+            }
         }
-
-
 
     }
 }

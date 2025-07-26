@@ -5,8 +5,8 @@
                 <el-tab-pane :label="$t('login.register')" name="first">
                     <el-form ref="registerFormRef" :model="registerForm" label-width="auto" style="margin-top: 30px;">
                         <!-- 用户名 -->
-                        <el-form-item :label="$t('login.account')" prop="username">
-                            <el-input v-model="registerForm.username"
+                        <el-form-item :label="$t('login.account')" prop="userAccount">
+                            <el-input v-model="registerForm.userAccount"
                                 :placeholder="$t('login.inputAccount')"></el-input>
                         </el-form-item>
 
@@ -41,39 +41,50 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { ElMessage } from 'element-plus';
+import type { ElForm } from 'element-plus/lib';
+import type { register_req } from '@/api-services/models/register_req';
+import axios from 'axios';
 
 const activeName = ref('first')
 const emit = defineEmits(['switch-to-login'])
 
 const registerForm = ref({
-    username: '',
+    userAccount: '',
     password: '',
     confirmPassword: ''
 });
+const registerFormRef = ref<InstanceType<typeof ElForm> | null>(null);
 
-const submitRegister = () => {
+const submitRegister = async () => {
     if (registerForm.value.password !== registerForm.value.confirmPassword) {
         ElMessage.error('两次输入的密码不一致');
         return;
     }
-    // // 模拟注册逻辑
-    // if (!registerForm.value) return;
 
-    // try {
-    //     const valid = await registerFormRef.value.validate();
-    //     if (valid) {
-    //         // 构造符合后端 LoginReq 格式的请求体
-    //         // const loginData: login_req = {
-    //         //     UserAccount: registerFormRef.value.username,
-    //         //     PassWord: registerFormRef.value.password
-    //         // };
-    //         // 发送登录请求
-    //         const response = await axios.post('/api/API/Login/Login', loginData);
-    //     }
-    // } catch (error) {
-    //     console.error('登录失败:', error);
-    //     ElMessage.error('注册失败！');
-    // }
+    if (!registerFormRef.value) return;
+
+    try {
+        const valid = await registerFormRef.value.validate();
+        if (valid) {
+            // 构造符合后端 LoginReq 格式的请求体
+            const registerData: register_req = {
+                UserAccount: registerForm.value.userAccount,
+                PassWord: registerForm.value.password
+            };
+            // 发送登录请求
+            const response = await axios.post('/api/API/User/RegisterUser', registerData);
+
+            if (response.data.result == true) {
+                ElMessage.success('注册成功');
+                //切换回登录
+                emit('switch-to-login')
+            }
+            else
+                ElMessage.error(response.data.msg);
+        }
+    } catch (error) {
+        ElMessage.error('注册失败！');
+    }
 
 };
 const backToLogin = () => {
@@ -81,7 +92,7 @@ const backToLogin = () => {
 }
 
 const resetRegister = () => {
-    registerForm.value.username = '';
+    registerForm.value.userAccount = '';
     registerForm.value.password = '';
     registerForm.value.confirmPassword = '';
 };
