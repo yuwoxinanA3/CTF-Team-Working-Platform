@@ -33,7 +33,7 @@ namespace CTFPlatForm.Repository.Login
         {
             // 登录验证的正确方式
             var user = await _db.Queryable<Users>()
-                .Where(p => p.UserAccount == req.UserAccount)
+                .Where(p => p.UserAccount == req.UserAccount && !p.IsDeleted)
                 .FirstAsync();
 
             // 先检查用户是否存在
