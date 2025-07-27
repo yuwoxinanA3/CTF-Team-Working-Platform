@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "ConnectionString": "Server=localhost;Database=CTFPlatForm;Uid=root;Pwd=root;SslMode=None;AllowLoadLocalInfile=true;AllowUserVariables=true;"
+  }
+}

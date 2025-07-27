@@ -7,3 +7,10 @@ CTF团队协作平台是一种专门为CTF（Capture The Flag）竞赛团队设�
 4. 实时通讯：支持实时聊天功能，方便团队成员之间的沟通和讨论。
 5. 赛事提醒：提供CTF竞赛的赛程信息、报名截止时间等提醒功能，帮助团队成员及时参与比赛。
 CTF团队协作平台旨在提供一个集中、高效的工作环墫，帮助团队成员共同提升技能、取得更好的竞赛成绩。
+
+# 技术栈
+## 前端
+Vite + VUE3 + TypeScript + Pinia + iN18 + ElementUI Plus
+
+## 后端
+.NET 8 + .NET CORE WEB API + SqlSugar + Mysql + JWT

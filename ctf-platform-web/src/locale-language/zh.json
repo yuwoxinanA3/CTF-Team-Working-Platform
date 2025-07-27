@@ -1,0 +1,26 @@
+{
+    "platform_name": "CTF团队协作平台",
+    "login": {
+        "account_login": "账号密码登录",
+        "inputAccount": "请输入账号",
+        "inputPassword": "请输入密码",
+        "inputPasswordAgain": "请再次输入密码",
+        "surePassword":"确认密码",
+        "account": "账号",
+        "password": "密码",
+        "saveModel": "保存密码",
+        "register": "注册",
+        "forgetPassword": "忘记密码",
+        "thridWayLogin": "第三方登录:",
+        "phoneNumberLogin": "手机号登录",
+        "phoneNumber": "手机号",
+        "code": "验证码",
+        "getCode": "获取验证码",
+        "inputCode": "请输入验证码",
+        "hasSendCode": "已发送",
+        "inputPhoneNumber": "请输入手机号",
+        "submit": "登录",
+        "reset": "重置",
+        "backLogin":"返回登录"
+    }
+}

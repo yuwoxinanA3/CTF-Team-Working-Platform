@@ -1,0 +1,26 @@
+{
+    "platform_name": "CTF Team Collaboration Platform",
+    "login": {
+        "account_login": "Account Login",
+        "inputAccount": "enter the account",
+        "inputPassword": "enter the password",
+        "inputPasswordAgain": "enter the password again",
+        "surePassword": "Confirm Password",
+        "account": "Account",
+        "password": "Password",
+        "saveModel": "SavePassword",
+        "register": "Register",
+        "forgetPassword": "ForgetPassword",
+        "thridWayLogin": "third-party logins",
+        "phoneNumberLogin": "Phone login",
+        "phoneNumber": "Phone number",
+        "code": "Verification code",
+        "getCode": "Get Code",
+        "inputCode": "enter the code",
+        "hasSendCode": "Has sent",
+        "inputPhoneNumber": "enter the phone number",
+        "submit": "Sign in",
+        "reset": "Reset",
+        "backLogin":"Back Login"
+    }
+}
