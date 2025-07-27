@@ -13,6 +13,12 @@ namespace CTFPlatForm.Core.Interface
         /// </summary>
         /// <returns></returns>
         public Task<bool> InitDataBase();
+        
+        /// <summary>
+        /// 数据库升级
+        /// </summary>
+        /// <returns></returns>
+        public Task<bool> UpgradeDataBase();
 
     }
 }

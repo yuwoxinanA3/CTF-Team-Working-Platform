@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CTFPlatForm.Api.Controllers.User
 {
+    /// <summary>
+    /// 用户相关接口
+    /// </summary>
     public class UserController : BaseController
     {
         private IUserService _userService;

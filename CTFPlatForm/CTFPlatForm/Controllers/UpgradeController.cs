@@ -30,6 +30,23 @@ namespace CTFPlatForm.Api.Controllers
         {
             return await _upgradeService.InitDataBase();
         }
+
+        /// <summary>
+        /// 升级数据库
+        /// </summary>
+        /// <remarks>
+        /// 此接口用于升级数据库表结构，包括：
+        /// - 创建新增的表
+        /// - 添加新增的字段
+        /// - 不会影响已有数据
+        /// </remarks>
+        /// <returns>返回升级操作是否成功</returns>
+        [HttpPost]
+        public async Task<bool> UpgradeDataBase()
+        {
+            return await _upgradeService.UpgradeDataBase();
+        }
+
     }
 
 }

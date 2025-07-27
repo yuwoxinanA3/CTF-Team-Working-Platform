@@ -21,5 +21,10 @@ namespace CTFPlatForm.Service.Upgrade
         {
             return await _upgradeRepository.InitDataBase();
         }
+
+        public async Task<bool> UpgradeDataBase()
+        {
+            return await _upgradeRepository.UpgradeDataBase();
+        }
     }
 }

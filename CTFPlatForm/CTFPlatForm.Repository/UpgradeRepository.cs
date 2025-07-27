@@ -1,4 +1,5 @@
 ﻿using CTFPlatForm.Core.Entitys;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,8 +40,29 @@ namespace CTFPlatForm.Repository
                 CreateDate = DateTime.Now,
                 CreateUserId = "system"
             };
-            //string userId = (await _db.Insertable(user).ExecuteReturnEntityAsync()).Id;
             return await _db.Insertable(user).ExecuteCommandIdentityIntoEntityAsync();
+        }
+
+        public async Task<bool> UpgradeDataBase()
+        {
+            // SqlSugar 的 InitTables 方法本身就支持增量更新
+            // 它会自动检测表是否存在，只创建不存在的表
+            string nameSpace = "CTFPlatForm.Core.Entitys";
+            Type[] ass = Assembly.LoadFrom(AppContext.BaseDirectory + "CTFPlatForm.Core.dll")
+                .GetTypes()
+                .Where(p => p.Namespace == nameSpace)
+                .ToArray();
+
+            // 直接调用，会自动处理新增表和现有表
+            try
+            {
+                _db.CodeFirst.SetStringDefaultLength(200).InitTables(ass);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
     }

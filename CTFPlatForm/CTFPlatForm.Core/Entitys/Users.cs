@@ -40,5 +40,10 @@ namespace CTFPlatForm.Core.Entitys
         /// </summary>
         [SugarColumn(IsNullable = true)]
         public string Image { get; set; }
+        /// <summary>
+        /// 性别（0=女，1=男）
+        /// </summary>
+        [SugarColumn(IsNullable = true)]
+        public int sex { get; set; }
     }
 }

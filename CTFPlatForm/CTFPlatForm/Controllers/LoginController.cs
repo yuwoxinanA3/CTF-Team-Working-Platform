@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CTFPlatForm.Api.Controllers
 {
+    /// <summary>
+    /// 登录系统相关接口
+    /// </summary>
     public class LoginController : BaseController
     {
         private ILoginService _loginService;

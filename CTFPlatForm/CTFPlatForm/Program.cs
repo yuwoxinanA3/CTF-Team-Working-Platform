@@ -12,7 +12,9 @@ using CTFPlatForm.Service.Register;
 using CTFPlatForm.Service.Upgrade;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using NetTaste;
 using SqlSugar;
+using System.Diagnostics;
 using System.Text;
 
 namespace CTFPlatForm
@@ -71,7 +73,13 @@ namespace CTFPlatForm
             // 了解有关配置Swagger/OpenAPI的更多信息
             // 微软官网链接 https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(s =>
+            {
+                //开启Swagger文档注释
+                var basePath = AppDomain.CurrentDomain.BaseDirectory;
+                var xmlPath = Path.Combine(basePath, "CTFPlatForm.Api.xml");
+                s.IncludeXmlComments(xmlPath, true);
+            });
 
             // 注册服务
             builder.Services.AddScoped<LoginRepository>();
@@ -82,10 +90,6 @@ namespace CTFPlatForm
 
             builder.Services.AddScoped<UserRepository>();
             builder.Services.AddScoped<IUserService, UserService>();
-
-
-
-
 
             //实例化APP
             var app = builder.Build();
