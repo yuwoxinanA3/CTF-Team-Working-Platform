@@ -21,6 +21,13 @@
         "inputPhoneNumber": "enter the phone number",
         "submit": "Sign in",
         "reset": "Reset",
-        "backLogin":"Back Login"
+        "backLogin": "Back Login",
+        "invalidCredentials": "Incorrect username or password"
+    },
+    "error": {
+        "serverError": "Server internal error, please try again later",
+        "networkError": "Network connection is abnormal. Please check your network settings",
+        "badRequest": "Unknown error",
+        "unknownError": "Unknown error, please try again later"
     }
 }

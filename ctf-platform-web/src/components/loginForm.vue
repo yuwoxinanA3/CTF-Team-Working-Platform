@@ -27,7 +27,7 @@
                                     </div>
                                     <div>
                                         <span id="register" @click="handleRegisterClick">{{ $t('login.register')
-                                        }}</span>
+                                            }}</span>
 
                                         <span id="forgetPassword" @click="forgetPassword">{{
                                             $t('login.forgetPassword') }}</span>
@@ -57,7 +57,7 @@
                             <div id="login_button_box">
                                 <el-button id="login_button" type="primary" @click="submitForm">{{
                                     $t('login.submit')
-                                }}</el-button>
+                                    }}</el-button>
                                 <el-button id="reset_button" type="info" @click="resetForm" plain>{{
                                     $t('login.reset') }}</el-button>
                             </div>
@@ -96,7 +96,7 @@
                                     <el-button id="login_button" type="primary" @click="submitPhoneForm">{{
                                         $t('login.submit') }}</el-button>
                                     <el-button id="reset_button" type="info" plain>{{ $t('login.reset')
-                                    }}</el-button>
+                                        }}</el-button>
                                 </div>
                             </el-form-item>
 
@@ -222,8 +222,38 @@ const submitForm = async () => {
             router.push('/404')
         }
     } catch (error) {
-        console.error('登录失败:', error);
-        ElMessage.error('登录失败，请检查用户名或密码');
+        if (axios.isAxiosError(error)) {
+            // 请求发出但收到错误响应
+            if (error.response) {
+                switch (error.response.status) {
+                    case 401:
+                        // 401 Unauthorized - 用户名或密码错误
+                        ElMessage.error(t('login.invalidCredentials'));
+                        break;
+                    case 500:
+                        // 500 Internal Server Error - 服务器内部错误
+                        ElMessage.error(t('error.serverError'));
+                        break;
+                    case 400:
+                        // 400 Bad Request - 请求参数错误
+                        ElMessage.error(t('error.badRequest'));
+                        break;
+                    default:
+                        ElMessage.error(`${t('error.unknownError')}: ${error.response.status}`);
+                }
+            } 
+            // 请求发出但没有收到响应（网络问题）
+            else if (error.request) {
+                ElMessage.error(t('error.networkError'));
+            } 
+            // 其他错误
+            else {
+                ElMessage.error(t('error.unknownError'));
+            }
+        } else {
+            // 非 Axios 错误
+            ElMessage.error(t('error.unknownError'));
+        }
     }
 };
 
@@ -319,9 +349,6 @@ onMounted(() => {
 
 
 <style scoped>
-
-
-
 #login_box_content {
     /* background-color: red; */
     margin-top: 50px;

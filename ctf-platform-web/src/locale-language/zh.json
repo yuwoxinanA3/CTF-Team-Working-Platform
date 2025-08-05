@@ -5,7 +5,7 @@
         "inputAccount": "请输入账号",
         "inputPassword": "请输入密码",
         "inputPasswordAgain": "请再次输入密码",
-        "surePassword":"确认密码",
+        "surePassword": "确认密码",
         "account": "账号",
         "password": "密码",
         "saveModel": "保存密码",
@@ -21,6 +21,13 @@
         "inputPhoneNumber": "请输入手机号",
         "submit": "登录",
         "reset": "重置",
-        "backLogin":"返回登录"
+        "backLogin": "返回登录",
+        "invalidCredentials": "用户名或密码错误"
+    },
+    "error": {
+        "serverError": "服务器内部错误，请稍后再试",
+        "networkError": "网络连接异常，请检查网络设置",
+        "badRequest": "请求参数错误",
+        "unknownError": "未知错误，请稍后再试"
     }
 }
