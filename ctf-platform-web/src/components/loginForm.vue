@@ -217,9 +217,10 @@ const submitForm = async () => {
                 deleteCookie('savedUsername');
                 deleteCookie('savedPassword');
             }
-
+          // 登录成功后将背景色改为白色
+            document.body.style.backgroundColor = '#F5F7FA';
             // 登录成功后跳转到主页或其他页面
-            router.push('/404')
+            router.push('/team')
         }
     } catch (error) {
         if (axios.isAxiosError(error)) {
