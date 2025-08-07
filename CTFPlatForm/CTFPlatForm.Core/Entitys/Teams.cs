@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CTFPlatForm.Core.Entitys
 {
-    public class Team : IEntity
+    public class Teams : IEntity
     {
 
         /// <summary>

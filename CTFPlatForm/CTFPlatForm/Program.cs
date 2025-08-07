@@ -1,14 +1,17 @@
 
 using CTFPlatForm.Core.Interface;
 using CTFPlatForm.Core.Interface.Login;
+using CTFPlatForm.Core.Interface.Team;
 using CTFPlatForm.Core.Interface.User;
 using CTFPlatForm.Infrastructure.Tools;
 using CTFPlatForm.Repository;
 using CTFPlatForm.Repository.Login;
+using CTFPlatForm.Repository.Team;
 using CTFPlatForm.Repository.User;
 using CTFPlatForm.Service;
 using CTFPlatForm.Service.Login;
 using CTFPlatForm.Service.Register;
+using CTFPlatForm.Service.Team;
 using CTFPlatForm.Service.Upgrade;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -90,6 +93,9 @@ namespace CTFPlatForm
 
             builder.Services.AddScoped<UserRepository>();
             builder.Services.AddScoped<IUserService, UserService>();
+
+            builder.Services.AddScoped<TeamRepository>();
+            builder.Services.AddScoped<ITeamService, TeamService>();
 
             //ÊµÀý»¯APP
             var app = builder.Build();
