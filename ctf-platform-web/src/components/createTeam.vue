@@ -1,9 +1,15 @@
 <template>
     <h1 style="text-align: center;width: 100%;">创建战队</h1>
 
-    <el-form ref="ruleFormRef" style="max-width: 100%;background-color: #ffffff;margin-top: 30px;padding: 40px 17px;"
+    <el-form ref="ruleFormRef" style="max-width: 100%;background-color: #ffffff;padding: 40px 17px;border-radius: 10px;"
         :model="ruleForm" status-icon :rules="rules" label-width="auto" class="demo-ruleForm">
 
+        <!-- 战队队标上传 -->
+        <el-form-item>
+            <SingleImageUpload v-model:value="ruleForm.teamLogo" @success="handleAvatarSuccess" />
+        </el-form-item>
+
+        <!-- 战队名称验证 -->
         <el-form-item label="战队名称" prop="teamName">
             <el-input v-model="ruleForm.teamName" style="max-width: 600px" placeholder="请输入战队名称">
                 <template #append>
@@ -39,6 +45,7 @@ import axios from 'axios'
 import type { FormInstance, FormRules } from 'element-plus'
 //自定义引入
 import type { text_req } from '@/api-services/models/text_req'
+import SingleImageUpload from '@/components/singleImageUpload.vue'
 //资源引入
 
 
@@ -47,6 +54,7 @@ const ruleFormRef = ref<FormInstance>()
 
 const ruleForm = reactive({
     teamName: '',
+    teamLogo: ''
 })
 
 //状态变量
@@ -104,6 +112,11 @@ const checkTeamNameAvailability = async (name: string) => {
     }
 }
 
+// 头像上传成功处理函数
+const handleAvatarSuccess = (url: string) => {
+  ruleForm.teamLogo = url;
+  console.log(url); 
+}
 
 const submitForm = async (formEl: FormInstance | undefined) => {
     if (!formEl) return
