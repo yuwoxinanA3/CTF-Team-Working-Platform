@@ -446,3 +446,5 @@ nCrunchTemp*/
 project.lock.json
 project.assets.json
 
+# Ignore wwwroot folder in CTFPlatForm
+CTF-Team-Working-Platform/CTFPlatForm/CTFPlatForm/wwwroot/
