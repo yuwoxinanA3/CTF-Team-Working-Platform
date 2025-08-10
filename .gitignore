@@ -448,3 +448,4 @@ project.assets.json
 
 # Ignore wwwroot folder in CTFPlatForm
 CTF-Team-Working-Platform/CTFPlatForm/CTFPlatForm/wwwroot/
+CTF-Team-Working-Platform/CTFPlatForm/CTFPlatForm/wwwroot/**
