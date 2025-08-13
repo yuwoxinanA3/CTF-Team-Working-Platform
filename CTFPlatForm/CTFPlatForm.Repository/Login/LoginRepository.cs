@@ -46,8 +46,14 @@ namespace CTFPlatForm.Repository.Login
             if (BCrypt.Net.BCrypt.Verify(req.PassWord, user.Password))
             {
                 // 密码正确，返回用户信息
-                var userRes = new UserRes() { /* 映射用户信息 */ };
-                return userRes;
+                // 使用对象初始化器映射
+                return new UserRes
+                {
+                    Id = user.Id,
+                    Account = user.UserAccount,
+                    NickName = user.NickName ?? string.Empty
+                    // 映射其他属性
+                };
             }
             else
             {
