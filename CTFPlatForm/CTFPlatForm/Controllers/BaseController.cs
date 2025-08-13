@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CTFPlatForm.Api.Controllers
 {
-    [Route("API/[controller]/[action]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class BaseController : ControllerBase
     {

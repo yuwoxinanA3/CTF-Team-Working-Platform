@@ -1,15 +1,19 @@
 
 using CTFPlatForm.Core.Interface;
 using CTFPlatForm.Core.Interface.Login;
+using CTFPlatForm.Core.Interface.Team;
 using CTFPlatForm.Core.Interface.User;
 using CTFPlatForm.Infrastructure.Tools;
 using CTFPlatForm.Repository;
 using CTFPlatForm.Repository.Login;
+using CTFPlatForm.Repository.Team;
 using CTFPlatForm.Repository.User;
 using CTFPlatForm.Service;
 using CTFPlatForm.Service.Login;
 using CTFPlatForm.Service.Register;
+using CTFPlatForm.Service.Team;
 using CTFPlatForm.Service.Upgrade;
+using CTFPlatForm.Service.Upload;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using NetTaste;
@@ -91,6 +95,15 @@ namespace CTFPlatForm
             builder.Services.AddScoped<UserRepository>();
             builder.Services.AddScoped<IUserService, UserService>();
 
+            builder.Services.AddScoped<TeamRepository>();
+            builder.Services.AddScoped<ITeamService, TeamService>();
+
+            // 上传服务
+            builder.Services.AddScoped<LocalFileUploadService>();
+            builder.Services.AddScoped<CloudFileUploadService>();
+            builder.Services.AddScoped<IFileUploadServiceFactory, FileUploadServiceFactory>();
+
+
             //实例化APP
             var app = builder.Build();
 
@@ -100,6 +113,8 @@ namespace CTFPlatForm
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            // 配置静态文件中间件，确保可以访问上传的文件
+            app.UseStaticFiles();
 
             app.UseAuthorization();
             // 启用认证和授权中间件

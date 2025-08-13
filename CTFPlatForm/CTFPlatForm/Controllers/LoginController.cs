@@ -43,7 +43,7 @@ namespace CTFPlatForm.Api.Controllers
                     return Unauthorized();
                 }
                 JWTHelper jWTHelper = new JWTHelper();
-                var token = jWTHelper.GenerateJwtToken(loginReq.UserAccount, _configuration["JWTSettings:ValidIssuer"], _configuration["JWTSettings:ValidAudience"], _configuration["JWTSettings:IssuerSigningKey"]);
+                var token = jWTHelper.GenerateJwtToken(user.Id,loginReq.UserAccount, _configuration["JWTSettings:ValidIssuer"], _configuration["JWTSettings:ValidAudience"], _configuration["JWTSettings:IssuerSigningKey"]);
 
                 _logger.LogInformation("登录");
                 return Ok(new { token });

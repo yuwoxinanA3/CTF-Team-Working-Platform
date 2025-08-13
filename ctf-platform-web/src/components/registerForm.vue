@@ -72,7 +72,7 @@ const submitRegister = async () => {
                 PassWord: registerForm.value.password
             };
             // 发送登录请求
-            const response = await axios.post('/api/API/User/RegisterUser', registerData);
+            const response = await axios.post('/api/User/RegisterUser', registerData);
 
             if (response.data.result == true) {
                 ElMessage.success('注册成功');

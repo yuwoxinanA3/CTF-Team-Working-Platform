@@ -44,6 +44,6 @@ namespace CTFPlatForm.Core.Entitys
         /// 性别（0=女，1=男）
         /// </summary>
         [SugarColumn(IsNullable = true)]
-        public int sex { get; set; }
+        public int Sex { get; set; }
     }
 }

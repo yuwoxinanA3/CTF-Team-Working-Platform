@@ -21,6 +21,43 @@
         "inputPhoneNumber": "enter the phone number",
         "submit": "Sign in",
         "reset": "Reset",
-        "backLogin":"Back Login"
+        "backLogin": "Back Login",
+        "invalidCredentials": "Incorrect username or password"
+    },
+  "team": {
+    "teamName": "Team Name",
+    "inputTeamName": "Please enter team name",
+    "lengthLimit": "Length limit is 1-20 characters",
+    "check": "Check Availability",
+    "country": "Country",
+    "okName": "Name is available",
+    "falseName": "Name is already taken",
+    "inputCountry": "Please enter country",
+    "city": "City",
+    "inputCity": "Please enter city",
+    "teamWebsite": "Team Website",
+    "inputTeamWebsite": "Please enter team website",
+    "teamEmail": "Team Email",
+    "inputTeamEmail": "Please enter team email",
+    "establishmentTime": "Establishment Date",
+    "prickDay": "Select Date",
+    "teamIntroduction": "Team Introduction",
+    "inputTeamIntroduction": "Please enter team introduction",
+    "declaration": "Team Declaration",
+    "inputDeclaration": "Please enter team declaration",
+    "isPublic": "Is Public",
+    "createTeam": "Create Team",
+    "falseCommit": "Please fill in all required information",
+    "fasleName": "Team name is not available, cannot submit",
+    "createTeamSuccess": "Team created successfully",
+    "createTeamFail": "Team creation failed",
+    "createTeamError": "Error occurred during team creation",
+    "checkNameError": "Error checking name availability"
+  },
+    "error": {
+        "serverError": "Server internal error, please try again later",
+        "networkError": "Network connection is abnormal. Please check your network settings",
+        "badRequest": "Unknown error",
+        "unknownError": "Unknown error, please try again later"
     }
 }

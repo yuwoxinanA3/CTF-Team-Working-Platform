@@ -15,12 +15,13 @@ namespace CTFPlatForm.Infrastructure.Tools
         /// <summary>
         /// 生成 Json Web Token
         /// </summary>
-        /// <param name="userId"></param>
+        /// <param name="id">用户编号</param>
+        /// <param name="userId">账号</param>
         /// <param name="issuer"></param>
         /// <param name="audience"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        public string GenerateJwtToken(string userId, string issuer, string audience, string key)
+        public string GenerateJwtToken(string id,string userId, string issuer, string audience, string key)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -28,7 +29,8 @@ namespace CTFPlatForm.Infrastructure.Tools
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, userId),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim("id", id) // 添加用户唯一标识符
             };
 
             var token = new JwtSecurityToken(
