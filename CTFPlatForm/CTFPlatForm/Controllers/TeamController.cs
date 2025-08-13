@@ -1,5 +1,6 @@
 ﻿using CTFPlatForm.Core.Dto.Base;
 using CTFPlatForm.Core.Dto.Login;
+using CTFPlatForm.Core.Dto.Team;
 using CTFPlatForm.Core.Dto.User;
 using CTFPlatForm.Core.Interface.Login;
 using CTFPlatForm.Core.Interface.Team;
@@ -30,6 +31,19 @@ namespace CTFPlatForm.Api.Controllers
             return await _teamService.IsAvailableTeamName(textReq.TextContent);
         }
 
+
+        /// <summary>
+        /// 创建战队
+        /// </summary>
+        /// <param name="createTeamReq"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<bool> CreateCTFTeam([FromBody] CreateTeamReq createTeamReq)
+        {
+            // 从JWT中解析用户ID
+            var UserId = User.FindFirst("id")?.Value;
+            return await _teamService.CreateCTFTeam(UserId, createTeamReq);
+        }
 
 
     }

@@ -200,7 +200,7 @@ const submitForm = async () => {
                 PassWord: form.value.password
             };
             // 发送登录请求
-            const response = await axios.post('/api/API/Login/Login', loginData);
+            const response = await axios.post('/api/Login/Login', loginData);
             const token = response.data.token;
             // 存储 token 到 pinia
             const authStore = useAuthStore();

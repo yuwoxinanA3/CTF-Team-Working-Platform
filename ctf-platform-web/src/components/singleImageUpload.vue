@@ -201,7 +201,7 @@ function uploadImg() {
 
             try {
                 // 直接调用上传接口，不需要通过props传递
-                const response = await axios.post('/api/API/Upload/UploadAvatar/avatar', formData, {
+                const response = await axios.post('/api/Upload/UploadAvatar/avatar', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
