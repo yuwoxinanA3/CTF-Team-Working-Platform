@@ -10,13 +10,15 @@ const apiClient = axios.create({
 // 请求拦截器
 apiClient.interceptors.request.use(
   (config) => {
-    const authStore = useAuthStore();
-    const token = authStore.token;
-    
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    // 确保在客户端环境中运行
+    if (typeof window !== 'undefined') {
+      const authStore = useAuthStore();
+      const token = authStore.token;
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
     }
-    
+
     return config;
   },
   (error) => {
