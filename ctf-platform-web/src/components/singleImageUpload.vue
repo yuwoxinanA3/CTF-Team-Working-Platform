@@ -108,7 +108,16 @@ const previewUrl = computed(() => {
 // 方法
 /** 编辑头像 */
 function editCropper() {
-    options.img =new URL(props.value).pathname || props.defaultAvatar
+   // 如果 props.value 包含完整的 URL，则只取路径部分
+    if (props.value && props.value.startsWith('http')) {
+        try {
+            options.img = new URL(props.value).pathname
+        } catch (e) {
+            options.img = props.value
+        }
+    } else {
+        options.img = props.value || props.defaultAvatar
+    }
     open.value = true
 }
 
