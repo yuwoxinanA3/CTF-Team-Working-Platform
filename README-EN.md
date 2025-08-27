@@ -1,4 +1,5 @@
 # CTF-Team-Working-Platform
+(当前文档为英文版本,汉化版本请查看README.MD)
 
 CTF Team Working Platform is a specialized workspace designed for CTF (Capture The Flag) competition teams, aimed at helping team members collaborate effectively, communicate, and enhance their competition skills. This platform includes the following features:
 
@@ -10,3 +11,9 @@ CTF Team Working Platform is a specialized workspace designed for CTF (Capture T
 
 In summary, the CTF Team Working Platform aims to provide a centralized and efficient working environment to assist team members in collectively improving their skills and achieving better competition results.
 
+# tech stack
+### front-end
+Vite + VUE3 + TypeScript + Pinia + iN18 + ElementUI Plus
+
+### back-end
+.NET 8 + .NET CORE WEB API + SqlSugar + Mysql + JWT
