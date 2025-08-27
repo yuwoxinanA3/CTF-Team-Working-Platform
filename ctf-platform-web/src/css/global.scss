@@ -4,3 +4,20 @@ body {
     overflow: hidden;
     /* 隐藏滚动条 */
 }
+
+
+// 自定义盒模型
+// 卡片盒子
+.card-box {
+    background-color: white;
+    padding: 40px 17px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+//居中显示
+.center-box {
+    display: flex;
+    justify-content: center;
+}

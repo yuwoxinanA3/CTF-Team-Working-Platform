@@ -19,6 +19,11 @@ const router = createRouter({
             component: () => import('@/views/admin/team.vue')
         },
         {
+            path: '/user',
+            name: 'user',
+            component: () => import('@/views/admin/user.vue')
+        },
+        {
             path: '/:pathMatch(.*)',
             name: 'notfund',
             component: () => import('@/views/index/notFund.vue')
