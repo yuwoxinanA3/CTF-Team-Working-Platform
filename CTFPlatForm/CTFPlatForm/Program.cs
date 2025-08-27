@@ -35,6 +35,18 @@ namespace CTFPlatForm
                 .AddEmbeddedJsonFile(assembly, "Configuration.JWT.json")
                 .AddEmbeddedJsonFile(assembly, "Configuration.Database.json");
 
+            // 添加 CORS 服务
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowVueApp",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://127.0.0.1:5001", "http://localhost:5001")
+                              .AllowAnyHeader()
+                              .AllowAnyMethod();
+                    });
+            });
+
             // 添加服务
             builder.Services.AddAuthorization();
             //添加控制器服务
@@ -113,8 +125,21 @@ namespace CTFPlatForm
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            // 开发环境允许所有来源
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseCors(options => options
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            }
+            else
+            {
+                app.UseCors("AllowVueApp");
+            }
             // 配置静态文件中间件，确保可以访问上传的文件
             app.UseStaticFiles();
+
 
             // 启用认证和授权中间件
             app.UseAuthentication();

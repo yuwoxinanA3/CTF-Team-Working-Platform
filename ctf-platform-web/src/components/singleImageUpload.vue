@@ -108,7 +108,7 @@ const previewUrl = computed(() => {
 // 方法
 /** 编辑头像 */
 function editCropper() {
-    options.img = props.value || props.defaultAvatar
+    options.img =new URL(props.value).pathname || props.defaultAvatar
     open.value = true
 }
 
