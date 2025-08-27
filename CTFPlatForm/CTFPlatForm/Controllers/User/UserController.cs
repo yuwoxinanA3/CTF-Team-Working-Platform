@@ -6,6 +6,7 @@ using CTFPlatForm.Core.Interface.User;
 using CTFPlatForm.Core.Other;
 using CTFPlatForm.Infrastructure.Tools;
 using CTFPlatForm.Service.Login;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -55,6 +56,7 @@ namespace CTFPlatForm.Api.Controllers.User
         /// <param name="req"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize] // 启用JWT验证
         public async Task<ApiResult> GetUserById([FromBody] TextReq req)
         {
             //模型验证
@@ -75,6 +77,7 @@ namespace CTFPlatForm.Api.Controllers.User
         /// <param name="req"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize] // 启用JWT验证
         public async Task<ApiResult> ChangeUserImage([FromBody] TextReq req)
         {
             //模型验证
@@ -95,6 +98,7 @@ namespace CTFPlatForm.Api.Controllers.User
         /// <param name="req"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize] // 启用JWT验证
         public async Task<ApiResult> ChangeUserNickname([FromBody] TextReq req)
         {
             //模型验证

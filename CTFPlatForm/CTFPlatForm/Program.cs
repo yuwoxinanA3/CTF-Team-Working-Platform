@@ -116,9 +116,9 @@ namespace CTFPlatForm
             // 配置静态文件中间件，确保可以访问上传的文件
             app.UseStaticFiles();
 
-            app.UseAuthorization();
             // 启用认证和授权中间件
             app.UseAuthentication();
+            app.UseAuthorization();
             app.MapControllers();
 
             //启动实例程序

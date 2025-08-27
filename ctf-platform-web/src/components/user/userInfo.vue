@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 //官方引入
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, reactive } from 'vue'
 
 //插件引入
 
