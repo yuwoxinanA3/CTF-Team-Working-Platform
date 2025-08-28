@@ -14,14 +14,21 @@ const router = createRouter({
             component: () => import('@/views/index/login.vue')
         },
         {
+            path: '/home',
+            name: 'home',
+            component: () => import('@/views/index/home.vue'),
+            children: [
+                {
+                    path: 'user',
+                    name: 'user',
+                    component: () => import('@/views/admin/user.vue')
+                }
+            ]
+        },
+        {
             path: '/team',
             name: 'team',
             component: () => import('@/views/admin/team.vue')
-        },
-        {
-            path: '/user',
-            name: 'user',
-            component: () => import('@/views/admin/user.vue')
         },
         {
             path: '/:pathMatch(.*)',
