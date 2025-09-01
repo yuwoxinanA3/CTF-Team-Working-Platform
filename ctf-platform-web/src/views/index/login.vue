@@ -86,9 +86,9 @@ import { ref } from 'vue';
 //插件引入
 
 //自定义引入
-import loginForm from '@/components/loginForm.vue'
+import loginForm from '@/components/login/loginForm.vue'
 import languageChange from '@/components/languageChange.vue';
-import registerForm from '@/components/registerForm.vue';
+import registerForm from '@/components/login/registerForm.vue';
 //资源引入
 import logo from '@/assets/icons/logo.png'
 
