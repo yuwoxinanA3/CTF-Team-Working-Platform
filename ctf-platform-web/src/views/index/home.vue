@@ -82,7 +82,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
 
 // 显示用户面板
 const showUserPanel = () => {
-    router.push('/home/user')
+    router.push('/home/user/userInfo')
 }
 
 // 切换主题的方法接口

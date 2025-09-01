@@ -1,41 +1,27 @@
 <template>
     <el-row class="showPanel">
-        <el-col :span="4">
-            <el-menu default-active="2" class="el-menu-vertical-demo card-box">
+        <el-col :span="2">
+            <el-menu default-active="1" class="el-menu-vertical-demo card-box" style="padding: 20px 10px 50px 10px">
 
-                <el-menu-item index="1">
-                    <el-icon>
+                <el-menu-item index="1" class="sub-nav-font" @click="showUserPanel">
+                    <el-icon :size="18">
                         <User />
                     </el-icon>
-                    <span>Navigator One</span>
+                    <span>个人主页</span>
                 </el-menu-item>
 
-                <el-menu-item index="2">
-                    <el-icon>
-                        <icon-menu />
+                <el-menu-item index="2" class="sub-nav-font">
+                    <el-icon :size="18">
+                        <Key />
                     </el-icon>
-                    <span>Navigator Two</span>
-                </el-menu-item>
-
-                <el-menu-item index="3">
-                    <el-icon>
-                        <document />
-                    </el-icon>
-                    <span>Navigator Three</span>
-                </el-menu-item>
-
-                <el-menu-item index="4">
-                    <el-icon>
-                        <setting />
-                    </el-icon>
-                    <span>Navigator Four</span>
+                    <span>修改密码</span>
                 </el-menu-item>
 
             </el-menu>
         </el-col>
 
-        <el-col :span="20">
-            <UserInfo style="margin-left: 20px;"></UserInfo>
+        <el-col :span="22">
+            <router-view style="margin-left: 20px;" />
         </el-col>
 
     </el-row>
@@ -48,7 +34,13 @@
 
 
 <script setup lang="ts">
-import UserInfo from '@/components/user/userInfo.vue';
+import router from '@/router';
+
+
+// 显示用户面板
+const showUserPanel = () => {
+    router.push('/home/user/userInfo')
+}
 
 
 </script>
@@ -57,7 +49,12 @@ import UserInfo from '@/components/user/userInfo.vue';
 .showPanel {
     padding: 40px 17px;
     border-radius: 10px;
-    background-color: red;
     margin: 10px 20px;
+}
+
+.sub-nav-font {
+    font-size: 18px;
+    border-radius: 10px;
+    justify-content: center;
 }
 </style>
