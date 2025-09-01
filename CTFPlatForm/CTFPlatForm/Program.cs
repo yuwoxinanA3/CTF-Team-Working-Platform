@@ -1,4 +1,6 @@
 
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using CTFPlatForm.Core.Interface;
 using CTFPlatForm.Core.Interface.Login;
 using CTFPlatForm.Core.Interface.Team;
@@ -28,6 +30,13 @@ namespace CTFPlatForm
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            // 使用 Autofac 作为 DI 容器
+            builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+            // 配置 Autofac 容器
+            builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
+            {
+                containerBuilder.RegisterModule(new ServiceModule());
+            });
 
             // 加载多个嵌入式 JSON 配置文件,将分开的配置文件整合到一起
             var assembly = typeof(CTFPlatForm.Infrastructure.Tools.ConfigurationBuilderExtensions).Assembly;
@@ -97,23 +106,23 @@ namespace CTFPlatForm
                 s.IncludeXmlComments(xmlPath, true);
             });
 
-            // 注册服务
-            builder.Services.AddScoped<LoginRepository>();
-            builder.Services.AddScoped<ILoginService, LoginService>();
+            //// 注册服务
+            //builder.Services.AddScoped<LoginRepository>();
+            //builder.Services.AddScoped<ILoginService, LoginService>();
 
-            builder.Services.AddScoped<UpgradeRepository>();
-            builder.Services.AddScoped<IUpgradeService, UpgradeService>();
+            //builder.Services.AddScoped<UpgradeRepository>();
+            //builder.Services.AddScoped<IUpgradeService, UpgradeService>();
 
-            builder.Services.AddScoped<UserRepository>();
-            builder.Services.AddScoped<IUserService, UserService>();
+            //builder.Services.AddScoped<UserRepository>();
+            //builder.Services.AddScoped<IUserService, UserService>();
 
-            builder.Services.AddScoped<TeamRepository>();
-            builder.Services.AddScoped<ITeamService, TeamService>();
+            //builder.Services.AddScoped<TeamRepository>();
+            //builder.Services.AddScoped<ITeamService, TeamService>();
 
-            // 上传服务
-            builder.Services.AddScoped<LocalFileUploadService>();
-            builder.Services.AddScoped<CloudFileUploadService>();
-            builder.Services.AddScoped<IFileUploadServiceFactory, FileUploadServiceFactory>();
+            //// 上传服务
+            //builder.Services.AddScoped<LocalFileUploadService>();
+            //builder.Services.AddScoped<CloudFileUploadService>();
+            //builder.Services.AddScoped<IFileUploadServiceFactory, FileUploadServiceFactory>();
 
 
             //实例化APP
