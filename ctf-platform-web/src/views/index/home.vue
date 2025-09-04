@@ -31,8 +31,8 @@
         </el-sub-menu>
 
 
-        <div class="theme-toggle">
-            中
+        <div class="theme-toggle" @click="showLanguageSelector">
+            {{ $t('home.language') }}
         </div>
 
         <div class="theme-toggle" @click="toggleTheme">
@@ -49,6 +49,10 @@
 
     </el-menu>
 
+    <!-- 语言选择弹窗 -->
+    <el-dialog v-model="languageDialogVisible" width="300px" center>
+        <language-change />
+    </el-dialog>
 
     <!-- 嵌套路由视图，用于显示子组件 -->
     <div class="user-panel-container">
@@ -64,6 +68,7 @@ import router from '@/router'
 import { ref } from 'vue'
 
 //插件引入
+import LanguageChange from '@/components/languageChange.vue'
 
 //自定义引入
 
@@ -72,9 +77,8 @@ import { ref } from 'vue'
 
 //数据
 const activeIndex = ref('1')
-
 const isDarkTheme = ref(false)
-
+const languageDialogVisible = ref(false) // 控制语言选择弹窗显示
 //方法
 const handleSelect = (key: string, keyPath: string[]) => {
     console.log(key, keyPath)
@@ -110,6 +114,11 @@ const formatUsername = (username: string) => {
         return username.substring(0, 8) + '...'
     }
     return username
+}
+
+// 显示语言选择弹窗
+const showLanguageSelector = () => {
+    languageDialogVisible.value = true
 }
 
 </script>

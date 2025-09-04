@@ -24,6 +24,9 @@
     "backLogin": "Back Login",
     "invalidCredentials": "Incorrect username or password"
   },
+  "home": {
+    "language": "EN"
+  },
   "user": {
     "oldPwd": "Current Password",
     "newPwd": "New Password",
