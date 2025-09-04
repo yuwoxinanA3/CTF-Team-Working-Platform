@@ -26,6 +26,11 @@ const router = createRouter({
                         path: 'userInfo',
                         name: 'userInfo',
                         component: () => import('@/components/user/userInfo.vue'),
+                    },
+                    {
+                        path: 'changePwd',
+                        name: 'changePwd',
+                        component: () => import('@/components/user/changeUserPwd.vue'),
                     }]
                 }
             ]

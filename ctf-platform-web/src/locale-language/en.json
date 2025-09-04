@@ -1,29 +1,41 @@
 {
-    "platform_name": "CTF Team Collaboration Platform",
-    "login": {
-        "account_login": "Account Login",
-        "inputAccount": "enter the account",
-        "inputPassword": "enter the password",
-        "inputPasswordAgain": "enter the password again",
-        "surePassword": "Confirm Password",
-        "account": "Account",
-        "password": "Password",
-        "saveModel": "SavePassword",
-        "register": "Register",
-        "forgetPassword": "ForgetPassword",
-        "thridWayLogin": "third-party logins",
-        "phoneNumberLogin": "Phone login",
-        "phoneNumber": "Phone number",
-        "code": "Verification code",
-        "getCode": "Get Code",
-        "inputCode": "enter the code",
-        "hasSendCode": "Has sent",
-        "inputPhoneNumber": "enter the phone number",
-        "submit": "Sign in",
-        "reset": "Reset",
-        "backLogin": "Back Login",
-        "invalidCredentials": "Incorrect username or password"
-    },
+  "platform_name": "CTF Team Collaboration Platform",
+  "login": {
+    "account_login": "Account Login",
+    "inputAccount": "enter the account",
+    "inputPassword": "enter the password",
+    "inputPasswordAgain": "enter the password again",
+    "surePassword": "Confirm Password",
+    "account": "Account",
+    "password": "Password",
+    "saveModel": "SavePassword",
+    "register": "Register",
+    "forgetPassword": "ForgetPassword",
+    "thridWayLogin": "third-party logins",
+    "phoneNumberLogin": "Phone login",
+    "phoneNumber": "Phone number",
+    "code": "Verification code",
+    "getCode": "Get Code",
+    "inputCode": "enter the code",
+    "hasSendCode": "Has sent",
+    "inputPhoneNumber": "enter the phone number",
+    "submit": "Sign in",
+    "reset": "Reset",
+    "backLogin": "Back Login",
+    "invalidCredentials": "Incorrect username or password"
+  },
+  "user": {
+    "oldPwd": "Current Password",
+    "newPwd": "New Password",
+    "newPwdAgain": "Confirm New Password",
+    "changePwdSuccess": "Password changed successfully",
+    "oldPasswordError": "Current password is incorrect",
+    "samePasswordError": "New password cannot be the same as current password",
+    "changePwdFailed": "Failed to change password",
+    "formValidationError": "Form validation failed, please check your input",
+    "submitForm": "Submit Form",
+    "restForm": "Reset"
+  },
   "team": {
     "teamName": "Team Name",
     "inputTeamName": "Please enter team name",
@@ -54,10 +66,10 @@
     "createTeamError": "Error occurred during team creation",
     "checkNameError": "Error checking name availability"
   },
-    "error": {
-        "serverError": "Server internal error, please try again later",
-        "networkError": "Network connection is abnormal. Please check your network settings",
-        "badRequest": "Unknown error",
-        "unknownError": "Unknown error, please try again later"
-    }
+  "error": {
+    "serverError": "Server internal error, please try again later",
+    "networkError": "Network connection is abnormal. Please check your network settings",
+    "badRequest": "Unknown error",
+    "unknownError": "Unknown error, please try again later"
+  }
 }

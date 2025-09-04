@@ -10,7 +10,7 @@
                     <span>个人主页</span>
                 </el-menu-item>
 
-                <el-menu-item index="2" class="sub-nav-font">
+                <el-menu-item index="2" class="sub-nav-font" @click="showChangePwdPanel">
                     <el-icon :size="18">
                         <Key />
                     </el-icon>
@@ -41,6 +41,12 @@ import router from '@/router';
 const showUserPanel = () => {
     router.push('/home/user/userInfo')
 }
+
+const showChangePwdPanel = () => {
+    router.push('/home/user/changePwd')
+}
+
+
 
 
 </script>

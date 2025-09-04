@@ -113,5 +113,28 @@ namespace CTFPlatForm.Api.Controllers.User
             };
         }
 
+
+        /// <summary>
+        /// 修改密码（需要旧密码）
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Authorize] // 启用JWT验证
+        public async Task<ApiResult> ChangePwdByOldPwd([FromBody] ChangePwdReq req)
+        {
+            //模型验证
+            if (ModelState.IsValid)
+            {
+                // 从JWT中解析用户ID
+                string userId = User.FindFirst("id")?.Value;
+                return await _userService.ChangePwdByOldPwd(userId, req);
+            }
+            return new ApiResult()
+            {
+                IsSuccess = true,
+                Result = false
+            };
+        }
     }
 }

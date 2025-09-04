@@ -38,6 +38,13 @@ namespace CTFPlatForm.Core.Interface.User
         /// <param name="req"></param>
         /// <returns></returns>
         public Task<ApiResult> ChangeUserNickname(TextReq req);
-        
+
+        /// <summary>
+        /// 修改用户密码(旧密码)
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns></returns>
+        public Task<ApiResult> ChangePwdByOldPwd(string userId, ChangePwdReq req);
+
     }
 }

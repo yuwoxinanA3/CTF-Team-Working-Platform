@@ -119,7 +119,7 @@ namespace CTFPlatForm.Service.Register
                 return new ApiResult
                 {
                     IsSuccess = true,
-                    Result=true
+                    Result = true
                 };
             else
                 return new ApiResult
@@ -133,6 +133,51 @@ namespace CTFPlatForm.Service.Register
         {
             //req中第一个字符串为userid，第二个为新的昵称URL
             bool isSuccess = await _userRepository.ChangeUserNickname(req.TextContent, req.TextContent2);
+            if (isSuccess)
+                return new ApiResult
+                {
+                    IsSuccess = true,
+                    Result = true
+                };
+            else
+                return new ApiResult
+                {
+                    IsSuccess = true,
+                    Result = false
+                };
+        }
+
+        public async Task<ApiResult> ChangePwdByOldPwd(string userId, ChangePwdReq req)
+        {
+            //验证旧密码
+            UserRes user = await _userRepository.GetUserById(userId);
+            bool isSuccess = true;
+
+            if (user != null)
+            {
+                if (BCrypt.Net.BCrypt.Verify(req.OldPassword, user.Password))
+
+                    if (BCrypt.Net.BCrypt.Verify(req.NewPassword, user.Password))
+                        return new ApiResult
+                        {
+                            IsSuccess = true,
+                            Result = false,
+                            Msg = "same password!"
+                        };
+                    else
+                        //修改旧密码
+                        isSuccess = await _userRepository.ChangePwdByOldPwd(userId, BCrypt.Net.BCrypt.HashPassword(req.NewPassword));
+                else
+                    return new ApiResult
+                    {
+                        IsSuccess = true,
+                        Result = false,
+                        Msg = "oldPassword Error!"
+                    };
+            }
+            else
+                isSuccess = false;
+            //返回结果
             if (isSuccess)
                 return new ApiResult
                 {

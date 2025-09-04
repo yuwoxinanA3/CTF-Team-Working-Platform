@@ -24,6 +24,18 @@
         "backLogin": "返回登录",
         "invalidCredentials": "用户名或密码错误"
     },
+    "user": {
+        "oldPwd": "当前密码",
+        "newPwd": "新密码",
+        "newPwdAgain": "确认新密码",
+        "changePwdSuccess": "密码修改成功",
+        "oldPasswordError": "当前密码不正确",
+        "samePasswordError": "新密码不能与当前密码相同",
+        "changePwdFailed": "密码修改失败",
+        "formValidationError": "表单验证失败，请检查输入",
+        "submitForm": "提交表单",
+        "restForm": "重置"
+    },
     "team": {
         "teamName": "战队名称",
         "inputTeamName": "请输入战队名称",
