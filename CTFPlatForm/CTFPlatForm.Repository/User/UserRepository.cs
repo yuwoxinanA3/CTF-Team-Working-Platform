@@ -94,6 +94,23 @@ namespace CTFPlatForm.Repository.User
             // 返回是否更新成功（影响行数大于0表示成功）
             return result > 0;
         }
+        /// <summary>
+        /// 修改用户密码(旧密码)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="passWord"></param>
+        /// <returns></returns>
+        public async Task<bool> ChangePwdByOldPwd(string id, string passWord)
+        {
+            // 根据用户ID更新密码
+            var result = await _db.Updateable<Users>()
+                .SetColumns(it => new Users() { Password = passWord })
+                .Where(it => it.Id == id)
+                .ExecuteCommandAsync();
+
+            // 返回是否更新成功（影响行数大于0表示成功）
+            return result > 0;
+        }
 
         #endregion
     }

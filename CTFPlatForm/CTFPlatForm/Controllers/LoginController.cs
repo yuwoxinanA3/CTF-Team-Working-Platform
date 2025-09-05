@@ -42,10 +42,10 @@ namespace CTFPlatForm.Api.Controllers
                 {
                     return Unauthorized();
                 }
-                JWTHelper jWTHelper = new JWTHelper();
-                var token = jWTHelper.GenerateJwtToken(user.Id,loginReq.UserAccount, _configuration["JWTSettings:ValidIssuer"], _configuration["JWTSettings:ValidAudience"], _configuration["JWTSettings:IssuerSigningKey"]);
+                JWTHelper jWTHelper = new JWTHelper(_configuration);
+                var token = jWTHelper.GenerateJwtToken(user.Id,loginReq.UserAccount);
 
-                _logger.LogInformation("登录");
+                _logger.LogInformation("用户登录,用户编号:"+user.Id +"用户昵称:" +user.NickName);
                 return Ok(new { token });
             }
 

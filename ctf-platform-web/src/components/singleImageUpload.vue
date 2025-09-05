@@ -54,43 +54,66 @@
         </div>
     </div>
 </template>
-
-<script setup>
+<script setup lang="ts">
 //官方引入
-import { ref, reactive, computed, nextTick } from 'vue'
+import { ref, reactive, computed, type Ref } from 'vue'
 //插件引入
 import { VueCropper } from "vue-cropper";
 import "vue-cropper/dist/index.css";
-import axios from 'axios'
+import { ElMessage } from 'element-plus'
+import apiClient from '@/api-services/apis'
+
+// 定义类型
+interface CropperRef {
+    changeScale: (num: number) => void
+    rotateLeft: () => void
+    rotateRight: () => void
+    getCropData: (callback: (data: string) => void) => void
+}
+
+interface PreviewData {
+    url?: string
+    div?: any
+    img?: any
+}
+
+interface Options {
+    img: string
+    autoCrop: boolean
+    autoCropWidth: number
+    autoCropHeight: number
+    fixedBox: boolean
+    outputType: string
+    previews: PreviewData
+}
+
+interface Props {
+    value?: string
+    defaultAvatar?: string
+    title?: string
+}
+
 // 定义组件属性
-const props = defineProps({
-    // 当前图片URL
-    value: {
-        type: String,
-        default: ''
-    },
-    // 默认头像
-    defaultAvatar: {
-        type: String,
-        default: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
-    },
-    // 标题
-    title: {
-        type: String,
-        default: '修改图片'
-    }
+const props = withDefaults(defineProps<Props>(), {
+    value: '',
+    defaultAvatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
+    title: '修改图片'
 })
 
 // 定义事件
-const emit = defineEmits(['input', 'success', 'error'])
+const emit = defineEmits<{
+    (e: 'input', value: string): void
+    (e: 'success', value: string): void
+    (e: 'error', error: any): void
+}>()
 
 // 数据
-const open = ref(false)
-const visible = ref(false)
-const cropper = ref(null)
+const open: Ref<boolean> = ref(false)
+const visible: Ref<boolean> = ref(false)
+const cropper: Ref<CropperRef | null> = ref(null)
 
 //图片裁剪数据
-const options = reactive({
+const options: Options = reactive({
     img: '', // 裁剪图片的地址
     autoCrop: true, // 是否默认生成截图框
     autoCropWidth: 200, // 默认生成截图框宽度
@@ -99,7 +122,6 @@ const options = reactive({
     outputType: "png", // 默认生成截图为PNG格式
     previews: {} //预览数据
 })
-
 // 计算属性
 const previewUrl = computed(() => {
     return options.previews.url || props.value || props.defaultAvatar;
@@ -107,8 +129,8 @@ const previewUrl = computed(() => {
 
 // 方法
 /** 编辑头像 */
-function editCropper() {
-   // 如果 props.value 包含完整的 URL，则只取路径部分
+function editCropper(): void {
+    // 如果 props.value 包含完整的 URL，则只取路径部分
     if (props.value && props.value.startsWith('http')) {
         try {
             options.img = new URL(props.value).pathname
@@ -122,12 +144,12 @@ function editCropper() {
 }
 
 /** 实时预览 */
-function realTime(data) {
+function realTime(data: PreviewData): void {
     options.previews = data;
 }
 
 /** 打开弹出层结束时的回调 */
-function modalOpened() {
+function modalOpened(): void {
     // 使用 setTimeout 替代 nextTick 来避免渲染问题
     setTimeout(() => {
         visible.value = true
@@ -135,17 +157,17 @@ function modalOpened() {
 }
 
 /** 关闭窗口 */
-function closeDialog() {
+function closeDialog(): void {
     visible.value = false
     open.value = false
     options.img = ''
 }
 
 /** 覆盖默认上传行为 */
-function requestUpload() { }
+function requestUpload(): void { }
 
 /** 上传预处理 */
-function beforeUpload(file) {
+function beforeUpload(file: File): boolean {
     if (file.type.indexOf("image/") === -1) {
         alert("文件格式错误，请上传图片类型,如：JPG，PNG后缀的文件。")
         return false
@@ -153,30 +175,30 @@ function beforeUpload(file) {
         const reader = new FileReader()
         reader.readAsDataURL(file)
         reader.onload = () => {
-            options.img = reader.result
+            options.img = reader.result as string
         }
         return false // 阻止默认上传行为
     }
 }
 
 /** 图片缩放 */
-function changeScale(num) {
+function changeScale(num: number): void {
     num = num || 1
     cropper.value?.changeScale(num)
 }
 
 /** 向左旋转 */
-function rotateLeft() {
+function rotateLeft(): void {
     cropper.value?.rotateLeft()
 }
 
 /** 向右旋转 */
-function rotateRight() {
+function rotateRight(): void {
     cropper.value?.rotateRight()
 }
 
 // 压缩图片
-function compress(img) {
+function compress(img: HTMLImageElement): string {
     let canvas = document.createElement("canvas")
     let ctx = canvas.getContext("2d")
     let width = img.width
@@ -184,18 +206,20 @@ function compress(img) {
     canvas.width = width
     canvas.height = height
     // 铺底色
-    ctx.fillStyle = "#fff"
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-    ctx.drawImage(img, 0, 0, width, height)
+    if (ctx) {
+        ctx.fillStyle = "#fff"
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+        ctx.drawImage(img, 0, 0, width, height)
+    }
     // 进行压缩
     let ndata = canvas.toDataURL("image/jpeg", 0.8)
     return ndata
 }
 
 /** 上传图片 */
-function uploadImg() {
+async function uploadImg(): Promise<void> {
     // 获取截图的 base64 数据
-    cropper.value?.getCropData((data) => {
+    cropper.value?.getCropData(async (data) => {
         let img = new Image()
         img.src = data
         img.onload = async () => {
@@ -209,12 +233,17 @@ function uploadImg() {
             formData.append('uploadType', 'local')
 
             try {
-                // 直接调用上传接口，不需要通过props传递
-                const response = await axios.post('/api/Upload/UploadAvatar/avatar', formData, {
+                const response = await apiClient.post('/Upload/UploadAvatar/avatar', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
                 })
+                // const response = await axios.post('/api/Upload/UploadAvatar/avatar', formData, {
+                //     headers: {
+                //         'Content-Type': 'multipart/form-data'
+                //     }
+                // })
+
                 // 后端基础URL (根据你的代理配置，应该使用这个地址来访问后端资源)
                 const BACKEND_BASE_URL = 'http://localhost:5193';
                 // 返回上传后的URL
@@ -232,14 +261,17 @@ function uploadImg() {
                 visible.value = false
 
                 alert("上传成功")
-            } catch (error) {
+            } catch (error: any) {
+                console.log(error)
+                if (error.response?.status === 401) {
+                    ElMessage.error("token已过期,请重新登录!");
+                }
                 emit('error', error)
                 alert("上传失败")
             }
         }
     })
 }
-
 </script>
 
 <style lang="scss" scoped>
