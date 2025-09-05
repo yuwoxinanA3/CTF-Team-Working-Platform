@@ -1,32 +1,27 @@
 <template>
-    <el-row class="showPanel">
-        <el-col :span="2">
-            <el-menu default-active="1" class="el-menu-vertical-demo card-box" style="padding: 20px 10px 50px 10px">
-
+    <div class="showPanel">
+        <div class="sidebar">
+            <el-menu default-active="1" class="el-menu-vertical-demo card-box" style="padding: 20px 10px 50px 10px;">
                 <el-menu-item index="1" class="sub-nav-font" @click="showUserPanel">
-                    <el-icon :size="18">
+                    <el-icon :size="18" style="margin-right: 8px;">
                         <User />
                     </el-icon>
-                    <span>个人主页</span>
+                    <span>{{ $t('user.pseronPage') }}</span>
                 </el-menu-item>
 
                 <el-menu-item index="2" class="sub-nav-font" @click="showChangePwdPanel">
-                    <el-icon :size="18">
+                    <el-icon :size="18" style="margin-right: 8px;">
                         <Key />
                     </el-icon>
-                    <span>修改密码</span>
+                    <span>{{ $t('user.changePwdPage') }}</span>
                 </el-menu-item>
-
             </el-menu>
-        </el-col>
+        </div>
 
-        <el-col :span="22">
+        <div class="main-content">
             <router-view style="margin-left: 20px;" />
-        </el-col>
-
-    </el-row>
-
-
+        </div>
+    </div>
 </template>
 
 
@@ -53,14 +48,33 @@ const showChangePwdPanel = () => {
 
 <style scoped>
 .showPanel {
-    padding: 40px 17px;
-    border-radius: 10px;
+    display: flex;
+    padding: 20px 0;
     margin: 10px 20px;
+    background-color: none;
+}
+
+.sidebar {
+    flex-shrink: 0;
+    /* 不压缩 */
+    width: auto;
+    /* 自动宽度 */
+    min-width: 120px;
+    /* 最小宽度，防止太窄 */
+    max-width: 200px;
+    /* 防止过宽 */
+    border-right: 1px solid #ebeef5;
+}
+
+.main-content {
+    flex-grow: 1;
+    /* 占据剩余空间 */
+    border-radius: 20px;
 }
 
 .sub-nav-font {
-    font-size: 18px;
+    font-size: 16px;
     border-radius: 10px;
-    justify-content: center;
+    justify-content: left;
 }
 </style>
