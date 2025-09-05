@@ -1,26 +1,10 @@
 
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using CTFPlatForm.Core.Interface;
-using CTFPlatForm.Core.Interface.Login;
-using CTFPlatForm.Core.Interface.Team;
-using CTFPlatForm.Core.Interface.User;
 using CTFPlatForm.Infrastructure.Tools;
-using CTFPlatForm.Repository;
-using CTFPlatForm.Repository.Login;
-using CTFPlatForm.Repository.Team;
-using CTFPlatForm.Repository.User;
-using CTFPlatForm.Service;
-using CTFPlatForm.Service.Login;
-using CTFPlatForm.Service.Register;
-using CTFPlatForm.Service.Team;
-using CTFPlatForm.Service.Upgrade;
-using CTFPlatForm.Service.Upload;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using NetTaste;
 using SqlSugar;
-using System.Diagnostics;
 using System.Text;
 
 namespace CTFPlatForm
@@ -70,14 +54,19 @@ namespace CTFPlatForm
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
+                    ValidateIssuerSigningKey = bool.Parse(builder.Configuration["JWTSettings:ValidateIssuerSigningKey"]),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWTSettings:IssuerSigningKey"])),
+                    ValidateIssuer = bool.Parse(builder.Configuration["JWTSettings:ValidateIssuer"]),
                     ValidIssuer = builder.Configuration["JWTSettings:ValidIssuer"],
+                    ValidateAudience = bool.Parse(builder.Configuration["JWTSettings:ValidateAudience"]),
                     ValidAudience = builder.Configuration["JWTSettings:ValidAudience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWTSettings:IssuerSigningKey"]))
+                    ValidateLifetime = bool.Parse(builder.Configuration["JWTSettings:ValidateLifetime"]),
+                    ClockSkew = TimeSpan.FromSeconds(int.Parse(builder.Configuration["JWTSettings:ClockSkew"])),
+                    RequireExpirationTime = bool.Parse(builder.Configuration["JWTSettings:RequireExpirationTime"])
                 };
+
+                // 禁用默认的claim类型映射
+                options.MapInboundClaims = false;
             });
             #endregion
 
@@ -105,25 +94,6 @@ namespace CTFPlatForm
                 var xmlPath = Path.Combine(basePath, "CTFPlatForm.Api.xml");
                 s.IncludeXmlComments(xmlPath, true);
             });
-
-            //// 注册服务
-            //builder.Services.AddScoped<LoginRepository>();
-            //builder.Services.AddScoped<ILoginService, LoginService>();
-
-            //builder.Services.AddScoped<UpgradeRepository>();
-            //builder.Services.AddScoped<IUpgradeService, UpgradeService>();
-
-            //builder.Services.AddScoped<UserRepository>();
-            //builder.Services.AddScoped<IUserService, UserService>();
-
-            //builder.Services.AddScoped<TeamRepository>();
-            //builder.Services.AddScoped<ITeamService, TeamService>();
-
-            //// 上传服务
-            //builder.Services.AddScoped<LocalFileUploadService>();
-            //builder.Services.AddScoped<CloudFileUploadService>();
-            //builder.Services.AddScoped<IFileUploadServiceFactory, FileUploadServiceFactory>();
-
 
             //实例化APP
             var app = builder.Build();

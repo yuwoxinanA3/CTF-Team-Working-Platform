@@ -8,6 +8,7 @@ using CTFPlatForm.Infrastructure.Tools;
 using CTFPlatForm.Service.Login;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace CTFPlatForm.Api.Controllers
 {
@@ -41,8 +42,8 @@ namespace CTFPlatForm.Api.Controllers
         public async Task<bool> CreateCTFTeam([FromBody] CreateTeamReq createTeamReq)
         {
             // 从JWT中解析用户ID
-            var UserId = User.FindFirst("id")?.Value;
-            return await _teamService.CreateCTFTeam(UserId, createTeamReq);
+            var userId = User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
+            return await _teamService.CreateCTFTeam(userId, createTeamReq);
         }
 
 

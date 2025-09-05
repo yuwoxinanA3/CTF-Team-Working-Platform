@@ -9,6 +9,7 @@ using CTFPlatForm.Service.Login;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace CTFPlatForm.Api.Controllers.User
 {
@@ -127,7 +128,7 @@ namespace CTFPlatForm.Api.Controllers.User
             if (ModelState.IsValid)
             {
                 // 从JWT中解析用户ID
-                string userId = User.FindFirst("id")?.Value;
+                var userId = User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
                 return await _userService.ChangePwdByOldPwd(userId, req);
             }
             return new ApiResult()
