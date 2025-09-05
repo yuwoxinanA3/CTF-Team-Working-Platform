@@ -54,16 +54,15 @@ namespace CTFPlatForm.Api.Controllers.User
         /// <summary>
         /// 获取用户信息
         /// </summary>
-        /// <param name="req"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize] // 启用JWT验证
-        public async Task<ApiResult> GetUserById([FromBody] TextReq req)
+        [Authorize]
+        public async Task<ApiResult> GetUserById()
         {
             //模型验证
             if (ModelState.IsValid)
             {
-                return await _userService.GetUserById(req);
+                return await _userService.GetUserById(User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value);
             }
             return new ApiResult()
             {
@@ -78,13 +77,13 @@ namespace CTFPlatForm.Api.Controllers.User
         /// <param name="req"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize] // 启用JWT验证
+        [Authorize]
         public async Task<ApiResult> ChangeUserImage([FromBody] TextReq req)
         {
             //模型验证
             if (ModelState.IsValid)
             {
-                return await _userService.ChangeUserImage(req);
+                return await _userService.ChangeUserImage(User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value,req.TextContent);
             }
             return new ApiResult()
             {
@@ -99,13 +98,13 @@ namespace CTFPlatForm.Api.Controllers.User
         /// <param name="req"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize] // 启用JWT验证
+        [Authorize]
         public async Task<ApiResult> ChangeUserNickname([FromBody] TextReq req)
         {
             //模型验证
             if (ModelState.IsValid)
             {
-                return await _userService.ChangeUserNickname(req);
+                return await _userService.ChangeUserNickname(User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value,req.TextContent);
             }
             return new ApiResult()
             {
@@ -121,7 +120,7 @@ namespace CTFPlatForm.Api.Controllers.User
         /// <param name="req"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize] // 启用JWT验证
+        [Authorize]
         public async Task<ApiResult> ChangePwdByOldPwd([FromBody] ChangePwdReq req)
         {
             //模型验证

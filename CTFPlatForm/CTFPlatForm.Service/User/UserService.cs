@@ -88,11 +88,11 @@ namespace CTFPlatForm.Service.Register
         /// <summary>
         /// 获取用户信息
         /// </summary>
-        /// <param name="req"></param>
+        /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task<ApiResult> GetUserById(TextReq req)
+        public async Task<ApiResult> GetUserById(string userId)
         {
-            UserRes user = await _userRepository.GetUserById(req.TextContent);
+            UserRes user = await _userRepository.GetUserById(userId);
             if (user != null)
             {
                 return new ApiResult
@@ -111,10 +111,9 @@ namespace CTFPlatForm.Service.Register
                 };
         }
 
-        public async Task<ApiResult> ChangeUserImage(TextReq req)
+        public async Task<ApiResult> ChangeUserImage(string userId,string userImageUrl)
         {
-            //req中第一个字符串为userid，第二个为新的图片url
-            bool isSuccess = await _userRepository.ChangeUserImage(req.TextContent, req.TextContent2);
+            bool isSuccess = await _userRepository.ChangeUserImage(userId, userImageUrl);
             if (isSuccess)
                 return new ApiResult
                 {
@@ -129,10 +128,9 @@ namespace CTFPlatForm.Service.Register
                 };
         }
 
-        public async Task<ApiResult> ChangeUserNickname(TextReq req)
+        public async Task<ApiResult> ChangeUserNickname(string userId,string newNickName)
         {
-            //req中第一个字符串为userid，第二个为新的昵称URL
-            bool isSuccess = await _userRepository.ChangeUserNickname(req.TextContent, req.TextContent2);
+            bool isSuccess = await _userRepository.ChangeUserNickname(userId, newNickName);
             if (isSuccess)
                 return new ApiResult
                 {

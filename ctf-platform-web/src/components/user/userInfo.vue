@@ -36,7 +36,6 @@ import { onMounted, reactive } from 'vue'
 //自定义引入
 import SingleImageUpload from '@/components/singleImageUpload.vue'
 import type { text_req } from '@/api-services/models/text_req'
-import { useAuthStore } from '@/store/authStore'
 import apiClient from '@/api-services/apis'
 import { ElMessage, ElMessageBox } from 'element-plus'
 //资源引入
@@ -85,18 +84,10 @@ const handleEdit = async () => {
 
 const saveNewNickname = async (newNickname: string) => {
     try {
-        // 获取 userId
-        const authStore = useAuthStore();
-        const userId = authStore.getUserId();
-        if (!userId) {
-            ElMessage.error("用户未登录或ID无效");
-            return;
-        }
-        
+
         // 构造请求数据
         const reqData = {
-            TextContent: userId,
-            TextContent2: newNickname
+            TextContent: newNickname
         };
 
         // 发送请求到后端更新昵称
@@ -108,42 +99,38 @@ const saveNewNickname = async (newNickname: string) => {
         } else {
             ElMessage.error("昵称修改失败!");
         }
-    } catch (error) {
-        ElMessage.error("昵称修改失败!");
+    } catch (error: any) {
+        if (error.response?.status === 401) {
+            ElMessage.error("token已过期,请重新登录!");
+        } else {
+            ElMessage.error("昵称修改失败!");
+        }
+
     }
 }
-
-
 
 // 添加获取用户信息的方法
 const fetchUserInfo = async () => {
     try {
-        // 获取 userId (对应后端 GenerateJwtToken 方法中的 userId 参数)
-        const authStore = useAuthStore();
-        const userId = authStore.getUserId();
-        if (!userId) {
-            ElMessage.error("用户未登录或ID无效");
-            return;
-        }
-        // 构造符合后端  格式的请求体
-        const reqData: text_req = {
-            TextContent: userId
-        };
         // 发送请求
-        const response = await apiClient.post('/User/GetUserById', reqData);
+        const response = await apiClient.post('/User/GetUserById', null);
+
+        // 处理成功响应
         if (response.data) {
             userInfo.nickName = response.data.result.nickName;
             userInfo.userImage = response.data.result.image;
             userInfo.userType = response.data.result.userType;
-        }
-        else
+        } else {
             ElMessage.error("获取用户信息失败!");
-
+        }
     }
-    catch (error) {
-        ElMessage.error("获取用户信息失败!");
+    catch (error: any) {
+        if (error.response?.status === 401) {
+            ElMessage.error("token已过期,请重新登录!");
+        } else {
+            ElMessage.error("获取用户信息失败!");
+        }
     }
-
 }
 
 /**
@@ -151,17 +138,9 @@ const fetchUserInfo = async () => {
  */
 const saveNewImage = async () => {
     try {
-        // 获取 userId (对应后端 GenerateJwtToken 方法中的 userId 参数)
-        const authStore = useAuthStore();
-        const userId = authStore.getUserId();
-        if (!userId) {
-            ElMessage.error("用户未登录或ID无效");
-            return;
-        }
         // 构造符合后端  格式的请求体
         const reqData: text_req = {
-            TextContent: userId,
-            TextContent2: userInfo.userImage
+            TextContent: userInfo.userImage
         };
 
         // 发送请求
@@ -173,8 +152,12 @@ const saveNewImage = async () => {
             ElMessage.error("保存用户头像失败!");
 
     }
-    catch (error) {
-        ElMessage.error("保存用户头像失败!");
+    catch (error: any) {
+        if (error.response?.status === 401) {
+            ElMessage.error("token已过期,请重新登录!");
+        } else {
+            ElMessage.error("保存用户头像失败!");
+        }
     }
 }
 
