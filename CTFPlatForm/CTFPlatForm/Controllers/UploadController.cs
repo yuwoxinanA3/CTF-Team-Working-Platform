@@ -1,5 +1,6 @@
 ﻿using CTFPlatForm.Infrastructure.Tools;
 using CTFPlatForm.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,7 @@ namespace CTFPlatForm.Api.Controllers
         #endregion
 
         [HttpPost("avatar")]
+        [Authorize]
         public async Task<IActionResult> UploadAvatar([FromForm] UploadAvatarRequest request)
         {
             try

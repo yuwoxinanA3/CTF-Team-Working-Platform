@@ -1,7 +1,6 @@
 // api/index.ts 或类似文件
 import axios from 'axios';
 import { useAuthStore } from '@/store/authStore';
-import { useRouter } from 'vue-router';
 import router from '@/router';
 
 // 创建axios实例
