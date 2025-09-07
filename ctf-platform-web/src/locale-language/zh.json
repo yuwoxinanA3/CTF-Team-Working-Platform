@@ -36,7 +36,10 @@
     "tools": "工具中心",
     "onlineTools": "在线工具",
     "toolDownload": "工具下载",
-    "toolGuide": "工具指南"
+    "toolGuide": "工具指南",
+    "logoutMessage":"是否退出登录？",
+    "cancel":"取消",
+    "confirm":"确定"
   },
   "user": {
     "pseronPage": "个人页面",

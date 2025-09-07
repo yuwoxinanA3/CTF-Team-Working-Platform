@@ -42,16 +42,35 @@
     </div>
 
     <el-menu-item index="7" class="nav-font" @click="showUserPanel">
-      <el-avatar :size="40"
-        :src="'http://localhost:5193/uploads/avatars/7d4e03c9-ba2d-49f6-9428-a27a8a4dca97.png'" />
+      <el-avatar :size="40" :src="'http://localhost:5193/uploads/avatars/7d4e03c9-ba2d-49f6-9428-a27a8a4dca97.png'" />
       <span class="username" style="margin-left: 10px;">{{ formatUsername('予我心安A3') }}</span>
     </el-menu-item>
+
+
+    <div class="theme-toggle" @click="handleLogout">
+      <el-icon size="20px">
+        <SwitchButton />
+      </el-icon>
+    </div>
 
   </el-menu>
 
   <!-- 语言选择弹窗 -->
   <el-dialog v-model="languageDialogVisible" width="300px" center>
     <language-change />
+  </el-dialog>
+
+  <!-- 退出登录确认弹窗 -->
+  <el-dialog v-model="logoutDialogVisible" width="300px" center>
+    <span>{{ $t('home.logoutMessage') }}</span>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="logoutDialogVisible = false">{{ $t('home.cancel') }}</el-button>
+        <el-button type="primary" @click="confirmLogout">
+          {{ $t('home.confirm') }}
+        </el-button>
+      </span>
+    </template>
   </el-dialog>
 
   <!-- 嵌套路由视图，用于显示子组件 -->
@@ -69,6 +88,7 @@ import { ref } from 'vue'
 
 //插件引入
 import LanguageChange from '@/components/languageChange.vue'
+import { useAuthStore } from '@/store/authStore'
 
 //自定义引入
 
@@ -79,9 +99,10 @@ import LanguageChange from '@/components/languageChange.vue'
 const activeIndex = ref('1')
 const isDarkTheme = ref(false)
 const languageDialogVisible = ref(false) // 控制语言选择弹窗显示
+const logoutDialogVisible = ref(false) // 控制退出登录弹窗显示
 //方法
 const handleSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+  // console.log(key, keyPath)
 }
 
 // 显示用户面板
@@ -119,6 +140,25 @@ const formatUsername = (username: string) => {
 // 显示语言选择弹窗
 const showLanguageSelector = () => {
   languageDialogVisible.value = true
+}
+
+// 处理退出登录点击事件
+const handleLogout = () => {
+  logoutDialogVisible.value = true
+}
+
+// 确认退出登录
+const confirmLogout = () => {
+
+  // 清除认证信息
+  const authStore = useAuthStore();
+  authStore.clearToken();
+
+  logoutDialogVisible.value = false
+  // 设置登录页背景色
+  document.body.style.backgroundColor = '#000000'
+  // 跳转到登录页
+  router.push('/login')
 }
 
 </script>
@@ -172,5 +212,10 @@ const showLanguageSelector = () => {
 .user-panel-container {
   position: relative;
   width: 100%;
+}
+
+/* 退出弹窗按钮样式 */
+.dialog-footer button:first-child {
+  margin-right: 10px;
 }
 </style>

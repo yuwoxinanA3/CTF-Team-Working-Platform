@@ -36,7 +36,10 @@
     "tools": "Tools",
     "onlineTools": "Online Tools",
     "toolDownload": "Tool Download",
-    "toolGuide": "Tool Guide"
+    "toolGuide": "Tool Guide",
+    "logoutMessage": "Are you sure you want to log out? ",
+    "cancel": "Cancel",
+    "confirm": "yes"
   },
   "user": {
     "pseronPage": "Personal Page",
