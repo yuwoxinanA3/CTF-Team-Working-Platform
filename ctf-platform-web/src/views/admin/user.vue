@@ -1,6 +1,6 @@
 <template>
     <div class="showPanel">
-        <div class="sidebar">
+        <div class="sidebar" style="height: 200px;">
             <el-menu default-active="1" class="el-menu-vertical-demo card-box" style="padding: 20px 10px 50px 10px;">
                 <el-menu-item index="1" class="sub-nav-font" @click="showUserPanel">
                     <el-icon :size="18" style="margin-right: 8px;">
@@ -54,22 +54,24 @@ const showChangePwdPanel = () => {
     background-color: none;
 }
 
+::v-deep(.el-menu) {
+    border-right: none !important;
+    border-bottom: none !important;
+    /* 修复白边 */
+}
+
 .sidebar {
     flex-shrink: 0;
-    /* 不压缩 */
     width: auto;
-    /* 自动宽度 */
     min-width: 120px;
-    /* 最小宽度，防止太窄 */
     max-width: 200px;
-    /* 防止过宽 */
-    border-right: 1px solid #ebeef5;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .main-content {
     flex-grow: 1;
-    /* 占据剩余空间 */
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .sub-nav-font {

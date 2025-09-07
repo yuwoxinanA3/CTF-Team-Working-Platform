@@ -1,59 +1,62 @@
 <template>
-  <el-menu :default-active="activeIndex" class="el-menu-demo nav-box" mode="horizontal" :ellipsis="false"
-    @select="handleSelect">
-    <el-menu-item index="0">
-      <img style="width: 50px" src="@/assets/images/主页贴图.png" alt="Rotten logo" />
-      <span style="font-size: x-large;">{{ $t('platform_name') }}</span>
-    </el-menu-item>
-    <el-menu-item index="1" class="nav-font">{{ $t('home.home') }}</el-menu-item>
+  <div id="nav-div">
+    <el-menu :default-active="activeIndex" class="el-menu-demo nav-box" mode="horizontal" :ellipsis="false"
+      @select="handleSelect">
+      <el-menu-item index="0">
+        <img style="width: 50px" src="@/assets/images/主页贴图.png" alt="Rotten logo" />
+        <span style="font-size: x-large;">{{ $t('platform_name') }}</span>
+      </el-menu-item>
+      <el-menu-item index="1" class="nav-font">{{ $t('home.home') }}</el-menu-item>
 
-    <el-menu-item index="2" class="nav-font">{{ $t('home.competition') }}</el-menu-item>
+      <el-menu-item index="2" class="nav-font">{{ $t('home.competition') }}</el-menu-item>
 
-    <el-menu-item index="3" class="nav-font">{{ $t('home.training') }}</el-menu-item>
-    <el-menu-item index="4" class="nav-font">{{ $t('home.team') }}</el-menu-item>
-
-
-    <el-sub-menu index="5">
-      <template #title>
-        <div class="nav-font nav-font-submenu">{{ $t('home.resources') }}</div>
-      </template>
-      <el-menu-item index="5-1">{{ $t('home.blog') }}</el-menu-item>
-      <el-menu-item index="5-2">{{ $t('home.video') }}</el-menu-item>
-    </el-sub-menu>
-
-    <el-sub-menu index="6">
-      <template #title>
-        <div class="nav-font nav-font-submenu">{{ $t('home.tools') }}</div>
-      </template>
-      <el-menu-item index="6-1">{{ $t('home.onlineTools') }}</el-menu-item>
-      <el-menu-item index="6-2">{{ $t('home.toolDownload') }}</el-menu-item>
-      <el-menu-item index="6-3">{{ $t('home.toolGuide') }}</el-menu-item>
-    </el-sub-menu>
+      <el-menu-item index="3" class="nav-font">{{ $t('home.training') }}</el-menu-item>
+      <el-menu-item index="4" class="nav-font">{{ $t('home.team') }}</el-menu-item>
 
 
-    <div class="theme-toggle" @click="showLanguageSelector">
-      {{ $t('home.language') }}
-    </div>
+      <el-sub-menu index="5">
+        <template #title>
+          <div class="nav-font nav-font-submenu">{{ $t('home.resources') }}</div>
+        </template>
+        <el-menu-item index="5-1">{{ $t('home.blog') }}</el-menu-item>
+        <el-menu-item index="5-2">{{ $t('home.video') }}</el-menu-item>
+      </el-sub-menu>
 
-    <div class="theme-toggle" @click="toggleTheme">
-      <el-icon size="20px">
-        <component :is="isDarkTheme ? 'Moon' : 'Sunny'" />
-      </el-icon>
-    </div>
-
-    <el-menu-item index="7" class="nav-font" @click="showUserPanel">
-      <el-avatar :size="40" :src="'http://localhost:5193/uploads/avatars/7d4e03c9-ba2d-49f6-9428-a27a8a4dca97.png'" />
-      <span class="username" style="margin-left: 10px;">{{ formatUsername('予我心安A3') }}</span>
-    </el-menu-item>
+      <el-sub-menu index="6">
+        <template #title>
+          <div class="nav-font nav-font-submenu">{{ $t('home.tools') }}</div>
+        </template>
+        <el-menu-item index="6-1">{{ $t('home.onlineTools') }}</el-menu-item>
+        <el-menu-item index="6-2">{{ $t('home.toolDownload') }}</el-menu-item>
+        <el-menu-item index="6-3">{{ $t('home.toolGuide') }}</el-menu-item>
+      </el-sub-menu>
 
 
-    <div class="theme-toggle" @click="handleLogout">
-      <el-icon size="20px">
-        <SwitchButton />
-      </el-icon>
-    </div>
+      <div class="theme-toggle" @click="showLanguageSelector">
+        {{ $t('home.language') }}
+      </div>
 
-  </el-menu>
+      <div class="theme-toggle" @click="toggleTheme">
+        <el-icon size="20px">
+          <component :is="isDarkTheme ? 'Moon' : 'Sunny'" />
+        </el-icon>
+      </div>
+
+      <el-menu-item index="7" class="nav-font" @click="showUserPanel">
+        <el-avatar :size="40" :src="'http://localhost:5193/uploads/avatars/7d4e03c9-ba2d-49f6-9428-a27a8a4dca97.png'" />
+        <span class="username" style="margin-left: 10px;">{{ formatUsername('予我心安A3') }}</span>
+      </el-menu-item>
+
+
+      <div class="theme-toggle" @click="handleLogout">
+        <el-icon size="20px">
+          <SwitchButton />
+        </el-icon>
+      </div>
+
+    </el-menu>
+  </div>
+
 
   <!-- 语言选择弹窗 -->
   <el-dialog v-model="languageDialogVisible" width="300px" center>
@@ -84,7 +87,7 @@
 <script lang="ts" setup>
 //官方引入
 import router from '@/router'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 //插件引入
 import LanguageChange from '@/components/languageChange.vue'
@@ -113,20 +116,25 @@ const showUserPanel = () => {
 // 切换主题的方法接口
 const toggleTheme = () => {
   isDarkTheme.value = !isDarkTheme.value
-  // TODO: 在这里添加实际的主题切换逻辑
-  // 你可以在这里调用切换主题的函数或 emit 事件
   onThemeChange(isDarkTheme.value ? 'dark' : 'light')
 }
 
-// 主题切换接口，供外部实现具体逻辑
+// 主题切换实现
 const onThemeChange = (theme: 'light' | 'dark') => {
-  // 这里留一个接口方法，你可以在这里实现具体的主题切换逻辑
-  console.log('Theme changed to:', theme)
-  // 例如：
-  // - 切换 CSS 类
-  // - 调用 store 中的方法
-  // - 修改 CSS 变量
-  // - 调用 API 保存用户偏好
+  // 使用更可靠的方式获取根元素
+  const app = document.getElementById('app') || document.body
+
+  if (theme === 'dark') {
+    app.classList.add('dark-theme')
+  } else {
+    app.classList.remove('dark-theme')
+  }
+
+  // 保存用户主题偏好到 localStorage
+  localStorage.setItem('theme', theme)
+
+  // 同时更新 HTML 元素的 data-theme 属性（如果需要）
+  document.documentElement.setAttribute('data-theme', theme)
 }
 
 // 格式化用户名，超过8个字符显示省略号
@@ -149,44 +157,77 @@ const handleLogout = () => {
 
 // 确认退出登录
 const confirmLogout = () => {
-
   // 清除认证信息
   const authStore = useAuthStore();
   authStore.clearToken();
-
   logoutDialogVisible.value = false
-  // 设置登录页背景色
-  document.body.style.backgroundColor = '#000000'
   // 跳转到登录页
   router.push('/login')
 }
 
+//监听
+// 在组件挂载时初始化主题
+onMounted(() => {
+  // 从 localStorage 获取保存的主题，如果没有则根据系统偏好设置
+  const savedTheme = localStorage.getItem('theme')
+  if (savedTheme) {
+    isDarkTheme.value = savedTheme === 'dark'
+    onThemeChange(savedTheme as 'light' | 'dark')
+  } else {
+    // 根据系统主题设置初始主题
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    isDarkTheme.value = prefersDark
+    onThemeChange(prefersDark ? 'dark' : 'light')
+  }
+})
 </script>
 
 <style scoped>
+#nav-div{
+  padding-top: 10px;
+}
+
 .nav-box {
-  background-color: white;
+  background-color: var(--el-menu-bg-color);
+  /* 使用 CSS 变量 */
+  margin: 0 20px;
   padding: 0px 10px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin: 10px 20px;
+  border: 1px solid var(--el-border-color);
 }
 
 .nav-font {
   font-size: larger;
-  color: #909399;
+  color: var(--el-menu-text-color);
+  /* 使用 CSS 变量 */
 }
 
 .nav-font-submenu {
   font-size: 21px;
   font-weight: 350;
+  color: var(--el-menu-text-color);
+  /* 使用 CSS 变量 */
+}
+
+/* 暗色主题下的特殊样式 */
+.dark-theme .nav-box {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .nav-font {
+  color: var(--el-menu-text-color);
+}
+
+.dark-theme .nav-font-submenu {
+  color: var(--el-menu-text-color);
 }
 
 .el-menu--horizontal {
   --el-menu-horizontal-height: 70px;
 }
 
-/*从语言选择开始居右 */
+/* 从语言选择开始居右 */
 .el-menu--horizontal> :nth-child(7) {
   margin-right: auto;
 }
@@ -199,20 +240,23 @@ const confirmLogout = () => {
   padding: 0 20px;
   cursor: pointer;
   transition: background-color 0.3s;
-  color: #909399;
+  color: var(--el-menu-text-color);
+  /* 使用 CSS 变量 */
   font-size: larger;
 }
 
-/* .theme-toggle:hover {
-    background-color: var(--el-menu-hover-bg-color);
-    color: var(--el-menu-hover-text-color);
-} */
+.theme-toggle:hover {
+  background-color: var(--el-menu-hover-bg-color);
+  color: var(--el-menu-hover-text-color);
+}
 
 /* 用户面板容器样式 */
 .user-panel-container {
-  position: relative;
-  width: 100%;
+  background-color: var(--el-bg-color-page);
+  min-height: calc(100vh - 100px);
+  border-radius: 10px;
 }
+
 
 /* 退出弹窗按钮样式 */
 .dialog-footer button:first-child {
