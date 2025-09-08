@@ -21,3 +21,68 @@ body {
     display: flex;
     justify-content: center;
 }
+
+
+
+
+//组件样式
+// 自定义暗色主题下的 el-input 样式
+.dark-theme {
+
+    //自定义el-inpout样式
+    .el-input__inner {
+        color: #ffffff; // 更纯的白色
+        background-color: #1d1d1d; // 更深的背景色
+    }
+
+    .el-input__wrapper {
+        background-color: #1d1d1d;
+
+        &:hover {
+            background-color: #2d2d2d;
+        }
+
+        &.is-focus {
+            background-color: #252525;
+        }
+    }
+
+    //自定义el-button样式
+    .el-button {
+        color: #ffffff; // 设置为纯白色文字
+        background-color: #2d2d2d; // 设置更深的背景色
+        border-color: #4c4d4f; // 设置边框颜色
+
+        &:hover {
+            color: #ffffff;
+            background-color: #3d3d3d;
+            border-color: #606266;
+        }
+
+        &:focus {
+            color: #ffffff;
+            background-color: #3d3d3d;
+            border-color: #606266;
+        }
+    }
+
+    //自定义el-button样式
+    .el-button--primary {
+        background-color: #409eff;
+        border-color: #409eff;
+        color: #ffffff; // 确保文字为纯白色
+
+        &:hover {
+            background-color: #66b1ff;
+            border-color: #66b1ff;
+            color: #ffffff;
+        }
+
+        &:focus {
+            background-color: #66b1ff;
+            border-color: #66b1ff;
+            color: #ffffff;
+        }
+    }
+
+}

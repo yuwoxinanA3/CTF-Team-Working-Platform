@@ -1,7 +1,7 @@
 <template>
   <div id="nav-div">
     <el-menu :default-active="activeIndex" class="el-menu-demo nav-box" mode="horizontal" :ellipsis="false"
-      @select="handleSelect">
+      >
       <el-menu-item index="0">
         <img style="width: 50px" src="@/assets/images/主页贴图.png" alt="Rotten logo" />
         <span style="font-size: x-large;">{{ $t('platform_name') }}</span>
@@ -104,10 +104,6 @@ const isDarkTheme = ref(false)
 const languageDialogVisible = ref(false) // 控制语言选择弹窗显示
 const logoutDialogVisible = ref(false) // 控制退出登录弹窗显示
 //方法
-const handleSelect = (key: string, keyPath: string[]) => {
-  // console.log(key, keyPath)
-}
-
 // 显示用户面板
 const showUserPanel = () => {
   router.push('/home/user/userInfo')
