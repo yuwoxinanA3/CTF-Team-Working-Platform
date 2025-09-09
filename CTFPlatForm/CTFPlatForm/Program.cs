@@ -22,12 +22,16 @@ namespace CTFPlatForm
                 containerBuilder.RegisterModule(new ServiceModule());
             });
 
-            // 加载多个嵌入式 JSON 配置文件,将分开的配置文件整合到一起
+            #region 配置文件
+            // 在开发环境中使用嵌入式配置，在生产环境中直接使用 appsettings.json
             var assembly = typeof(CTFPlatForm.Infrastructure.Tools.ConfigurationBuilderExtensions).Assembly;
-            builder.Configuration
-                .AddEmbeddedJsonFile(assembly, "Configuration.JWT.json")
-                .AddEmbeddedJsonFile(assembly, "Configuration.Database.json");
-
+            if (builder.Environment.IsDevelopment())
+            {
+                builder.Configuration
+                    .AddEmbeddedJsonFile(assembly, "Configuration.JWT.json")
+                    .AddEmbeddedJsonFile(assembly, "Configuration.Database.json");
+            }
+            #endregion
             // 添加 CORS 服务
             builder.Services.AddCors(options =>
             {
