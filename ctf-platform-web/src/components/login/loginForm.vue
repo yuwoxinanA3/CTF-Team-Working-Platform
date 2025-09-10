@@ -134,6 +134,7 @@ import { useAuthStore } from '@/store/authStore';
 import { deleteCookie, getCookie, setCookie } from '@/utils/cookieUtils';
 import { decrypt, encrypt } from '@/utils/cryptoUtils';
 import emitter from '@/utils/eventBus';
+import apiClient from '@/api-services/apis';
 
 //数据
 const activeName = ref('first')
@@ -200,7 +201,7 @@ const submitForm = async () => {
                 PassWord: form.value.password
             };
             // 发送登录请求
-            const response = await axios.post('/api/Login/Login', loginData);
+            const response = await apiClient.post('/Login/Login', loginData);
             const token = response.data.token;
             // 存储 token 到 pinia
             const authStore = useAuthStore();
