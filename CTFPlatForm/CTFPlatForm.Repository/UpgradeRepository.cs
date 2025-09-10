@@ -1,4 +1,5 @@
 ﻿using CTFPlatForm.Core.Entitys;
+using Perfolizer.Mathematics.Selectors;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace CTFPlatForm.Repository
                 Id = Guid.NewGuid().ToString(),
                 UserAccount = "admin",
                 NickName = "超级管理员",
-                Password = "123456",
+                Password =  BCrypt.Net.BCrypt.HashPassword("123456"),
                 UserType = 0,
                 IsEnable = true,
                 Description = "数据库初始化时默认的超级管理员",
